@@ -7,37 +7,37 @@
 
  **Home**
  - NavbarContainer
-  - Navbar
+  + Navbar
  - HomeViewContainer
-  - HomeView
+  + HomeView
  - AuthFormContainer
-  - AuthForm
+  + AuthForm
 
 **Study**
  - StudySidebarContainer
-  - StudySidebar
+  + StudySidebar
  - BlockContainer
-  - Block
+  + Block
 
 **Library**
  - NavbarContainer
-  - Navbar
+  + Navbar
  - MainContainer
-  - Main
+  + Main
 
 **Main**
  - DeckSidebarContainer
-  - DeckSidebar
+  + DeckSidebar
  - DeckView
-  - DeckFormContainer
-   - DeckForm
-  - DeckDetailsContainer
-   - DeckDetails
+  + DeckFormContainer
+   * DeckForm
+  + DeckDetailsContainer
+   * DeckDetails
  - BlockView
-  - BlockFormContainer
-   - BlockForm
-  - BlockDetailsContainer
-   - BlockDetails
+  + BlockFormContainer
+   * BlockForm
+  + BlockDetailsContainer
+   * BlockDetails
 
 ## Routes
 
