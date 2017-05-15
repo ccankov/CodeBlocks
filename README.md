@@ -1,6 +1,6 @@
 # CodeBlocks
 
-[Heroku link][heroku] **Note:** This should be a link to your production site
+[Heroku link][heroku] **Note:** Not yet live
 
 [Trello link][trello]
 
@@ -22,7 +22,7 @@ adequate seed data and sufficient CSS styling:
 - [ ] Study Decks
 - [ ] Embedded Code Editor
 - [ ] Difficulty Levels
-- [ ] Production README [sample](docs/production_readme.md)
+- [ ] Production README
 
 ## Design Docs
 * [View Wireframes][wireframes]
@@ -42,31 +42,37 @@ adequate seed data and sufficient CSS styling:
 ### Phase 1: Backend setup and Front End User Authentication (2 days)
 
 **Objective:** Functioning rails project with front-end Authentication and static home page.
+
 **Soft due date:** 6:00 PM, Wed May 17
 
 ### Phase 2: Create blocks (1 day)
 
 **Objective:** Transcribe code blocks and specify which lines/words will be user input through a form.
+
 **Soft due date:** 6:00 PM, Thu May 18
 
 ### Phase 3: Display blocks and solutions (2 days)
 
 **Objective:** Display blocks as questions, and allow solution comparison. Include Ace code editor.
+
 **Soft due date:** 6:00 PM, Mon May 22
 
 ### Phase 4: Languages, Topics and Decks (1 day)
 
 **Objective:** Tag blocks with a single languages and multiple topics. Form decks via combinations of languages and topics.
+
 **Soft due date:** 6:00 PM, Tue May 23
 
 ### Phase 5: Study decks and study sessions (2 days)
 
 **Objective:** Study decks and persist progress for each deck. Advance through difficulty levels.
+
 **Soft due date:** 6:00 PM, Thu May 25
 
 ### Phase 6: - Upvoting system and polished animations (1 day)
 
 **Objective:** Implement simple voting review system for blocks. Polish styling and animations.
+
 **Soft due date:** 6:00 PM, Fri May 26
 
 ### Bonus Feature List
