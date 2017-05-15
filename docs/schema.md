@@ -19,7 +19,7 @@ public      | boolean   | not null
 author_id   | integer   | not null, foreign key (references users), indexed
 language_id | integer   | not null, foreign key (references languages), indexed
 
-# user_cards
+## user_cards
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
@@ -58,6 +58,7 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 name        | string    | not null
+mastery     | integer   | not null
 author_id   | integer   | not null, foreign key (references users), indexed
 
 ## deck_topics
