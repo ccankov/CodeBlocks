@@ -1,6 +1,7 @@
 # CodeBlocks
 
 [Heroku link][heroku] **Note:** This should be a link to your production site
+
 [Trello link][trello]
 
 [heroku]: http://www.herokuapp.com
@@ -17,8 +18,8 @@ adequate seed data and sufficient CSS styling:
 - [ ] Hosting on Heroku
 - [ ] New account creation, login, and guest/demo login
 - [ ] Create/Delete Decks
-- [ ] Study Decks
 - [ ] Topics & Languages
+- [ ] Study Decks
 - [ ] Embedded Code Editor
 - [ ] Difficulty Levels
 - [ ] Production README [sample](docs/production_readme.md)
@@ -40,28 +41,33 @@ adequate seed data and sufficient CSS styling:
 
 ### Phase 1: Backend setup and Front End User Authentication (2 days)
 
-**Objective:** Functioning rails project with front-end Authentication
+**Objective:** Functioning rails project with front-end Authentication and static home page.
+**Soft due date:** 6:00 PM, Wed May 17
 
-### Phase 2: Notes Model, API, and components (2 days)
+### Phase 2: Create blocks (1 day)
 
-**Objective:** Notes can be created, read, edited and destroyed through
-the API.
+**Objective:** Transcribe code blocks and specify which lines/words will be user input through a form.
+**Soft due date:** 6:00 PM, Thu May 18
 
-### Phase 3: Notebooks (2 days)
+### Phase 3: Display blocks and solutions (2 days)
 
-**Objective:** Notes belong to Notebooks that can be created, read, edited and destroyed through the API.
+**Objective:** Display blocks as questions, and allow solution comparison. Include Ace code editor.
+**Soft due date:** 6:00 PM, Mon May 22
 
-### Phase 4: Tags (1 day)
+### Phase 4: Languages, Topics and Decks (1 day)
 
-**Objective:** Notes can be tagged with multiple tags, and tags are searchable.
+**Objective:** Tag blocks with a single languages and multiple topics. Form decks via combinations of languages and topics.
+**Soft due date:** 6:00 PM, Tue May 23
 
-### Phase 5: Allow Complex Styling in Notes (1 day, W2 Th 6pm)
+### Phase 5: Study decks and study sessions (2 days)
 
-**Objective:** Allow rich text editing of notes.
+**Objective:** Study decks and persist progress for each deck. Advance through difficulty levels.
+**Soft due date:** 6:00 PM, Thu May 25
 
-### Phase 6: - Pagination / infinite scroll for Notes Index (1 day, W2 F 6pm)
+### Phase 6: - Upvoting system and polished animations (1 day)
 
-**Objective:** Add infinite scroll to Notes Index
+**Objective:** Implement simple voting review system for blocks. Polish styling and animations.
+**Soft due date:** 6:00 PM, Fri May 26
 
 ### Bonus Feature List
 - [ ] Upvoting system
