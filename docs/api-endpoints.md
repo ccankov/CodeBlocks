@@ -12,27 +12,27 @@
 
 - `POST /api/users`
 - `PATCH /api/users`
-- `GET /api/user/:id/cards`
-  - returns card progress stats from user_cards table for this user
+- `GET /api/user/:id/blocks`
+  - returns block progress stats from user_blocks table for this user
 
 ### Session
 
 - `POST /api/session`
 - `DELETE /api/session`
 
-### Cards
+### Blocks
 
-- `GET /api/cards`
-  - Cards index/search
-  - accepts `topic_ids` query param to filter cards by topics
-  - accepts `lang_ids` query param to filter cards by languages
-  - accepts `user_id` query param to filter cards by author
-- `POST /api/cards`
-- `GET /api/cards/:id`
-- `PATCH /api/cards/:id`
-- `DELETE /api/cards/:id`
+- `GET /api/blocks`
+  - Blocks index/search
+  - accepts `topic_ids` query param to filter blocks by topics
+  - accepts `lang_ids` query param to filter blocks by languages
+  - accepts `user_id` query param to filter blocks by author
+- `POST /api/blocks`
+- `GET /api/blocks/:id`
+- `PATCH /api/blocks/:id`
+- `DELETE /api/blocks/:id`
 
-**NOTE:** All card operations always include associated block, topic, and language records.
+**NOTE:** All block operations always include associated topic, and language records.
 
 ### Languages
 
@@ -56,7 +56,7 @@
 - `POST /api/decks`
   - handles creating associated deck_topics and deck_languages
 - `GET /api/decks/:id`
-  - gets a single deck along with its cards
+  - gets a single deck along with its blocks
 - `PATCH /api/decks/:id`
   - handles modifying associated deck_topics and deck_languages
 - `DELETE /api/decks/:id`
