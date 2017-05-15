@@ -1,10 +1,10 @@
 # CodeBlocks
 
-[Heroku link][heroku] **Note:** Not yet live
+[Heroku link][heroku]
 
 [Trello link][trello]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: https://code-blocks.herokuapp.com/
 [trello]: https://trello.com/b/zRckxIiQ/codeblocks
 
 ## Minimum Viable Product
