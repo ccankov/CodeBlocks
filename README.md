@@ -69,7 +69,7 @@ adequate seed data and sufficient CSS styling:
 
 **Soft due date:** 6:00 PM, Thu May 25
 
-### Phase 6: - Upvoting system and polished animations (1 day)
+### Phase 6: Upvoting system and polished animations (1 day)
 
 **Objective:** Implement simple voting review system for blocks. Polish styling and animations.
 
