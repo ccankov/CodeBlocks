@@ -1,0 +1,46 @@
+input {
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: $lightest-gray;
+  width: 100%;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 80%;
+  border: 0;
+  border-top: 1px solid $light-gray;
+  box-sizing: content-box;
+}
+
+button {
+  border-radius: 3px;
+  padding: 5px 10px;
+  background: $blue;
+  color: white;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.25);
+}
+
+button:disabled {
+  cursor: default;
+  background: $gray;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    padding: 15px 30px;
+  }
+}
+
+.error-text {
+  color: $error;
+  font-size: 13px;
+}
