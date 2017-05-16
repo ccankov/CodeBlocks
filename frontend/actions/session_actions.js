@@ -3,7 +3,7 @@ import { receiveErrors } from './error_actions';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 
-export const receiveCurrentUser = (currentUser = {}) => ({
+export const receiveCurrentUser = (currentUser = null) => ({
   type: RECEIVE_CURRENT_USER,
   currentUser
 });

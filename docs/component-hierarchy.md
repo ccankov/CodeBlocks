@@ -6,8 +6,10 @@
 
 **ModalConductor**
  - ModalWrapper
-    * AuthFormContainer
-       + AuthForm
+    * LoginContainer
+       + LoginModal
+    * SignupContainer
+       + SignupModal
 
 **App**
  - Home
