@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import ModalWrapper from './modal_wrapper';
 import LoginContainer from './login_container';
 import SignupContainer from './signup_container';
+import { hideModal } from '../../actions/modal_actions';
 
 const ModalConductor = ({ currentModal, hideModal }) => {
   switch (currentModal) {
@@ -23,4 +25,15 @@ const ModalConductor = ({ currentModal, hideModal }) => {
   }
 };
 
-export default ModalConductor;
+const mapStateToProps = ({ currentModal }) => ({
+  currentModal
+});
+
+const mapDispatchToProps = dispatch => ({
+  hideModal: () => dispatch(hideModal())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ModalConductor);

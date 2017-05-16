@@ -5,7 +5,7 @@ const modalReducer = (state = null, action) => {
     case RECEIVE_MODAL:
       return action.modalType;
     default:
-      return null;
+      return state;
   }
 };
 
