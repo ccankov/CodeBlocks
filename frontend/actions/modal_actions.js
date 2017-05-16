@@ -4,3 +4,8 @@ export const receiveModal = (modalType) => ({
   type: RECEIVE_MODAL,
   modalType
 });
+
+export const hideModal = () => ({
+  type: RECEIVE_MODAL,
+  modalType: null
+});
