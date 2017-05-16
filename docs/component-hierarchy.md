@@ -1,5 +1,14 @@
 ## Component Hierarchy
 
+**Root**
+ - ModalConductor
+ - App
+
+**ModalConductor**
+ - ModalWrapper
+    * AuthFormContainer
+       + AuthForm
+
 **App**
  - Home
  - Study
@@ -10,8 +19,6 @@
     * Navbar
  - HomeViewContainer
     * HomeView
- - AuthFormContainer
-    * AuthForm
 
 **Study**
  - StudySidebarContainer
@@ -43,8 +50,6 @@
 
 |Path   | Component   |
 |-------|-------------|
-| "/sign-up" | "AuthFormContainer" |
-| "/sign-in" | "AuthFormContainer" |
 | "/" | "Home" |
 | "/study/:deckId" | "Study" |
 | "/library" | "Library" |
