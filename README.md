@@ -45,33 +45,27 @@ adequate seed data and sufficient CSS styling:
 
 **Soft due date:** 6:00 PM, Wed May 17
 
-### Phase 2: Create blocks (1 day)
+### Phase 2: Create blocks (2 day)
 
 **Objective:** Transcribe code blocks and specify which lines/words will be user input through a form.
 
-**Soft due date:** 6:00 PM, Thu May 18
+**Soft due date:** 6:00 PM, Fri May 19
 
 ### Phase 3: Display blocks and solutions (2 days)
 
 **Objective:** Display blocks as questions, and allow solution comparison. Include Ace code editor.
 
-**Soft due date:** 6:00 PM, Mon May 22
+**Soft due date:** 6:00 PM, Tue May 23
 
 ### Phase 4: Languages, Topics and Decks (1 day)
 
 **Objective:** Tag blocks with a single languages and multiple topics. Form decks via combinations of languages and topics.
 
-**Soft due date:** 6:00 PM, Tue May 23
+**Soft due date:** 6:00 PM, Wed May 24
 
 ### Phase 5: Study decks and study sessions (2 days)
 
 **Objective:** Study decks and persist progress for each deck. Advance through difficulty levels.
-
-**Soft due date:** 6:00 PM, Thu May 25
-
-### Phase 6: Upvoting system and polished animations (1 day)
-
-**Objective:** Implement simple voting review system for blocks. Polish styling and animations.
 
 **Soft due date:** 6:00 PM, Fri May 26
 
