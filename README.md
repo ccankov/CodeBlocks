@@ -33,7 +33,7 @@ adequate seed data and sufficient CSS styling:
 
 [wireframes]: docs/wireframes
 [components]: docs/component-hierarchy.md
-[sample-state]: docs/sample-state.md
+[sample-state]: docs/sample-state.js
 [api-endpoints]: docs/api-endpoints.md
 [schema]: docs/schema.md
 
