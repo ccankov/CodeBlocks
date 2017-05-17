@@ -18,6 +18,7 @@ class LoginModal extends React.Component {
 
     this.state = _nullUser;
 
+    this.switchModal = this.switchModal.bind(this);
     this.handleGuestLogin = this.handleGuestLogin.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -31,6 +32,10 @@ class LoginModal extends React.Component {
     );
   }
 
+  switchModal(e) {
+    this.props.receiveModal("SIGNUP_MODAL");
+  }
+  
   handleGuestLogin(e) {
     e.preventDefault();
     let hideModal = this.props.hideModal;
@@ -78,6 +83,7 @@ class LoginModal extends React.Component {
           <button disabled={ !this.submitReady() } >Log In</button>
           <button type="button" onClick={ this.handleGuestLogin }>Guest</button>
         </div>
+        <a onClick={ this.switchModal }>New user? Sign up instead.</a>
       </form>
     );
   }
