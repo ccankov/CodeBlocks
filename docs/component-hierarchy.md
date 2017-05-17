@@ -1,10 +1,10 @@
 ## Component Hierarchy
 
 **Root**
- - ModalConductor
+ - ModalContainer
  - App
 
-**ModalConductor**
+**ModalContainer**
  - ModalWrapper
     * LoginContainer
        + LoginModal
@@ -12,15 +12,10 @@
        + SignupModal
 
 **App**
- - Home
- - Study
- - Library
-
- **Home**
  - NavbarContainer
     * Navbar
- - HomeViewContainer
-    * HomeView
+ - Study
+ - Library
 
 **Study**
  - StudySidebarContainer

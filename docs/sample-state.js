@@ -1,10 +1,12 @@
 {
-  currentUser: {
-    id: 1,
-    email: "ccankov@codeblocks.us",
-    block_levels: {
-      1: 0, // block with id 1 is at level 0
-      3: 2 // block with id 3 is at level 2
+  session: {
+    currentUser: {
+      id: 1,
+      email: "ccankov@codeblocks.us",
+      block_levels: {
+        1: 0, // block with id 1 is at level 0
+        3: 2 // block with id 3 is at level 2
+      }
     }
   },
   currentModal: null, // "LOGIN_MODAL" for example

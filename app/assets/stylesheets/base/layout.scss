@@ -1,41 +1,17 @@
-input {
-  box-sizing: border-box;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 3px;
-  background-color: $lightest-gray;
-  width: 100%;
-}
-
-hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 80%;
-  border: 0;
-  border-top: 1px solid $light-gray;
-  box-sizing: content-box;
+body {
+  padding-top: 60px;
 }
 
 a {
-  color: $blue;
+  color: $light-accent;
 }
 
-a:hover {
-  text-decoration: underline;
+strong {
+  font-weight: bold;
 }
 
-button {
-  margin: 10px;
-  border-radius: 3px;
-  padding: 5px 10px;
-  background: $blue;
-  color: white;
-  box-shadow: 0 2px 3px rgba(0,0,0,0.25);
-}
-
-button:disabled {
-  cursor: default;
-  background: $gray;
+small {
+  font-size: 13px;
 }
 
 form {
@@ -50,8 +26,76 @@ form {
 
   a {
     margin-top: 15px;
-    font-size: 13px;
   }
+}
+
+input {
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: $lightest-gray;
+  width: 100%;
+}
+
+button {
+  margin: 10px;
+  border-radius: 3px;
+  padding: 5px 10px;
+  background: $light-accent;
+  color: $white;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.25);
+}
+
+button:hover {
+  background: $lighter-accent;
+}
+
+button:disabled {
+  cursor: default;
+  background: $gray;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 80%;
+  border: 0;
+  border-top: 1px solid $light-gray;
+  box-sizing: content-box;
+}
+
+.logo {
+  font-family: $paragraph;
+  text-transform: uppercase;
+  color: $white;
+  font-size: 20px;
+  text-decoration: none;
+  vertical-align: middle;
+  display: block;
+}
+
+.logo span {
+  font-size: 20px;
+  font-family: $paragraph;
+}
+
+.logo-strong {
+  padding-left: 8px;
+  font-family: $paragraph;
+  font-weight: 900;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.fa {
+  text-decoration: none;
+  color: $white;
+  vertical-align: middle;
+}
+
+.fa.fa-cubes {
+  font-size: 24px;
 }
 
 .error-text {

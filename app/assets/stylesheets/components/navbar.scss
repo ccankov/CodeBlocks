@@ -1,0 +1,49 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 500;
+  top: 0;
+  height: 60px;
+  width: 100%;
+  padding: 0 2.5%;
+  border-bottom: 4px solid $sharp-accent;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  box-sizing: border-box;
+  background-color: $secondary;
+}
+
+.navbar menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.navbar ul {
+  padding: 0 20px;
+}
+
+.navbar li {
+  vertical-align: middle;
+}
+
+.navbar p {
+  display: flex;
+  align-items: center;
+}
+
+.navbar a {
+  height: 100%;
+  vertical-align: middle;
+  color: $gray;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.navbar a:hover {
+  color: $lighter-accent;
+}

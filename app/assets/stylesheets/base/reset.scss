@@ -1,5 +1,5 @@
 html, body, header, nav, h1, a,
-ul, li, strong, main, button, i,
+ul, li, strong, main, menu, button, i,
 section, img, div, h2, p, form,
 fieldset, label, input, textarea,
 span, article, footer, time, small {
@@ -15,8 +15,12 @@ span, article, footer, time, small {
   box-sizing: inherit;
   background: transparent;
 
-  font-family: $sans-serif;
+  font-family: inherit;
   font-size: 16px;
+}
+
+body {
+  font-family: $heading;
 }
 
 ul {

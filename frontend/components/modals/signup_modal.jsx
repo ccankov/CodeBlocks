@@ -82,7 +82,9 @@ class SignupModal extends React.Component {
         <p className="error-text">{ passwordMatchError }</p>
         <hr />
         <button disabled={ !this.submitReady() } >Sign Up</button>
-        <a onClick={ this.switchModal }>Already signed up? Log in instead.</a>
+        <a onClick={ this.switchModal }>
+          <small>Already signed up? Log in instead.</small>  
+        </a>
       </form>
     );
   }

@@ -14,12 +14,12 @@ class ModalWrapper extends React.Component {
 
   render() {
     return (
-      <main className="modal-background" onClick={ this.handleBackgroundClick }>
+      <div className="modal-background" onClick={ this.handleBackgroundClick }>
         <figure className="modal-container">
           <header>{ this.props.title }</header>
           { this.props.children }
         </figure>
-      </main>
+      </div>
     );
   }
 }

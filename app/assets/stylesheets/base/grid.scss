@@ -1,7 +1,7 @@
 .row {
   display: flex;
   flex-wrap: wrap;
-  align-items: space-around;
+  align-items: center;
   justify-content: space-around;
 }
 
@@ -9,7 +9,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  align-items: space-around;
+  align-items: center;
   justify-content: space-around;
 }
 
