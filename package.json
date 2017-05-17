@@ -38,7 +38,8 @@
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
-    "webpack": "^2.5.1"
+    "webpack": "^2.5.1",
+    "remote-redux-devtools": "^0.5.10"
   },
   "devDependencies": {
     "remote-redux-devtools": "^0.5.10"
