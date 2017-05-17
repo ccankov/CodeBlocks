@@ -1,0 +1,34 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: space-around;
+  justify-content: space-around;
+}
+
+.col {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: space-around;
+  justify-content: space-around;
+}
+
+.two-thirds {
+  flex: 0.6667;
+}
+
+.one-half {
+  flex: 0.5;
+}
+
+.one-third {
+  flex: 0.3333;
+}
+
+.one-fourth {
+  flex: 0.25;
+}
+
+.one-eighth {
+  flex: 0.125;
+}

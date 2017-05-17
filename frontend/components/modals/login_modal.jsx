@@ -6,12 +6,19 @@ const _nullUser = {
   password: ''
 };
 
+const _guestUser = {
+  id: null,
+  email: 'guest@codeblocks.us',
+  password: 'imaguest'
+};
+
 class LoginModal extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = _nullUser;
 
+    this.handleGuestLogin = this.handleGuestLogin.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
   }
@@ -20,6 +27,14 @@ class LoginModal extends React.Component {
     e.preventDefault();
     let hideModal = this.props.hideModal;
     this.props.login(this.state).then(
+      () => hideModal()
+    );
+  }
+
+  handleGuestLogin(e) {
+    e.preventDefault();
+    let hideModal = this.props.hideModal;
+    this.props.login(_guestUser).then(
       () => hideModal()
     );
   }
@@ -59,7 +74,10 @@ class LoginModal extends React.Component {
           placeholder="password"
         ></input>
         <hr />
-        <button disabled={ !this.submitReady() } >Log In</button>
+        <div className="row">
+          <button disabled={ !this.submitReady() } >Log In</button>
+          <button type="button" onClick={ this.handleGuestLogin }>Guest</button>
+        </div>
       </form>
     );
   }
