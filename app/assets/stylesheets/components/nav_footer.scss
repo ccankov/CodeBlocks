@@ -10,3 +10,43 @@
   box-sizing: border-box;
   background-color: $secondary;
 }
+
+.nav-footer menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-footer ul {
+  padding: 0 20px;
+}
+
+.nav-footer li {
+  vertical-align: middle;
+}
+
+.nav-footer p {
+  display: flex;
+  align-items: center;
+}
+
+.nav-footer a {
+  font-weight: bold;
+  height: 100%;
+  vertical-align: middle;
+  color: $gray;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.nav-footer a:hover {
+  color: $lighter-accent;
+}
+
+.nav-footer small {
+  color: $gray;
+  text-align: right;
+}

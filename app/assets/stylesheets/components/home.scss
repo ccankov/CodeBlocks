@@ -11,7 +11,7 @@
 
 .article-1 {
   background-attachment: fixed;
-  background-image: linear-gradient(to right, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 100%), asset-url('codeblocks-main.jpg');
+  background-image: linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.4) 100%), asset-url('codeblocks-main.jpg');
   background-repeat: no-repeat;
   background-blend-mode: overlay;
 }
@@ -22,14 +22,74 @@
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-image: asset-url('codeblocks-computer.jpg');
+
+  section {
+    display: flex;
+    flex-wrap: nowrap;
+  }
 }
 
 .article-3 {
+  min-height: 70vh;
   background-color: $lighter-accent;
+  color: $white;
 }
 
 .article-4 {
+  padding: 5vh 5vw;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-image: asset-url('codeblocks-pattern.jpg');
+  background-image: linear-gradient(rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%), asset-url('codeblocks-pattern.jpg');
+  background-blend-mode: overlay;
+  justify-content: center;
+
+  .text-container {
+    min-width: 400px;
+    max-width: 500px;
+  }
+}
+
+.article-title {
+  color: $white;
+
+}
+
+.text-container {
+  margin: 30px;
+  border-radius: 5px;
+  background-color: $lightest-gray;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.5);
+  height: 65vh;
+  min-width: 350px;
+  max-width: 500px;
+  width: 40%;
+}
+
+.transparent {
+  background-color: transparent;
+  box-shadow: none;
+  margin: none;
+  margin-right: 10%;
+}
+
+.scrolldown-container {
+  position: absolute;
+  left: 50%;
+  bottom: -50px;
+  height: 100px;
+  width: 100px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 50px;
+}
+
+.fa-chevron-down {
+  padding-top: 20px;
+  color: white;
+  font-weight: bolder;
+}
+
+@media (max-width: 900px) {
+  .transparent {
+    display: none;
+  }
 }
