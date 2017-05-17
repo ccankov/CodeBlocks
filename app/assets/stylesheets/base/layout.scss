@@ -16,7 +16,16 @@ hr {
   box-sizing: content-box;
 }
 
+a {
+  color: $blue;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 button {
+  margin: 10px;
   border-radius: 3px;
   padding: 5px 10px;
   background: $blue;
@@ -37,6 +46,11 @@ form {
 
   button {
     padding: 15px 30px;
+  }
+
+  a {
+    margin-top: 15px;
+    font-size: 13px;
   }
 }
 

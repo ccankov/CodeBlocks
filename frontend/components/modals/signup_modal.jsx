@@ -13,6 +13,7 @@ class SignupModal extends React.Component {
 
     this.state = _nullUser;
 
+    this.switchModal = this.switchModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
   }
@@ -25,6 +26,10 @@ class SignupModal extends React.Component {
         () => hideModal()
       );
     }
+  }
+
+  switchModal(e) {
+    this.props.receiveModal("LOGIN_MODAL");
   }
 
   submitReady() {
@@ -77,6 +82,7 @@ class SignupModal extends React.Component {
         <p className="error-text">{ passwordMatchError }</p>
         <hr />
         <button disabled={ !this.submitReady() } >Sign Up</button>
+        <a onClick={ this.switchModal }>Already signed up? Log in instead.</a>
       </form>
     );
   }
