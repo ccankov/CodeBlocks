@@ -1,0 +1,35 @@
+.home-article {
+  position: relative;
+  min-height: 90vh;
+  box-sizing: border-box;
+  padding: 10vh 10vw;
+  background-size: cover;
+  background-position: 50% top;
+  box-shadow: 0 -1px 10px rgba(0,0,0,0.7);
+  text-align: center;
+}
+
+.article-1 {
+  background-attachment: fixed;
+  background-image: linear-gradient(to right, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 100%), asset-url('codeblocks-main.jpg');
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+}
+
+.article-2 {
+  min-height: 80vh;
+  background-position: 50% 0;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: asset-url('codeblocks-computer.jpg');
+}
+
+.article-3 {
+  background-color: $lighter-accent;
+}
+
+.article-4 {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: asset-url('codeblocks-pattern.jpg');
+}

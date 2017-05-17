@@ -56,7 +56,7 @@ class SignupModal extends React.Component {
       passwordMatchError = 'Passwords do not match';
     }
     return (
-      <form onSubmit={ this.handleSubmit }>
+      <form>
         <ul>
           { errorLis }
         </ul>
@@ -81,9 +81,12 @@ class SignupModal extends React.Component {
         ></input>
         <p className="error-text">{ passwordMatchError }</p>
         <hr />
-        <button disabled={ !this.submitReady() } >Sign Up</button>
+        <button
+          onClick={ this.handleSubmit }
+          className={ !this.submitReady() ? 'disabled' : '' }
+        >Sign Up</button>
         <a onClick={ this.switchModal }>
-          <small>Already signed up? Log in instead.</small>  
+          <small>Already signed up? Log in instead.</small>
         </a>
       </form>
     );

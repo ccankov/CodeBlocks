@@ -61,7 +61,7 @@ class LoginModal extends React.Component {
       <li key={idx} className="error-text">{error}</li>
     ));
     return (
-      <form onSubmit={ this.handleSubmit }>
+      <form>
         <ul>
           { errorLis }
         </ul>
@@ -80,7 +80,9 @@ class LoginModal extends React.Component {
         ></input>
         <hr />
         <div className="row">
-          <button disabled={ !this.submitReady() } >Log In</button>
+          <button
+            className={ !this.submitReady() ? 'disabled' : '' }
+            onClick={ this.handleSubmit } >Log In</button>
           <button type="button" onClick={ this.handleGuestLogin }>Guest</button>
         </div>
         <a onClick={ this.switchModal }>

@@ -11,11 +11,12 @@
     * SignupContainer
        + SignupModal
 
-**App**
+**Home**
  - NavbarContainer
     * Navbar
  - Study
  - Library
+ - Footer
 
 **Study**
  - StudySidebarContainer
