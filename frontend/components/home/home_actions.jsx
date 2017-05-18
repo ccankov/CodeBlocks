@@ -25,7 +25,7 @@ class HomeActions extends React.Component {
     return (
       <div className='col home-actions'>
         <p>
-          <strong>Popular Topics:</strong> JavaScript, React.js, Ruby, Rails
+          <strong>Popular Concepts:</strong> JavaScript, React.js, Ruby, Rails
         </p>
         <div className='row'>
           <button onClick={ this.handleSignup }>Create My CodeBlocks</button>

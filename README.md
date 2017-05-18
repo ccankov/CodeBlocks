@@ -15,12 +15,12 @@ using Ruby on Rails and React/Redux.  By the end of Week 9, this app will, at a
 minimum, satisfy the following criteria with smooth, bug-free navigation,
 adequate seed data and sufficient CSS styling:
 
-- [ ] Hosting on Heroku
-- [ ] New account creation, login, and guest/demo login
-- [ ] Create/Delete Decks
-- [ ] Topics & Languages
-- [ ] Study Decks
-- [ ] Embedded Code Editor
+- [X] Hosting on Heroku
+- [X] New account creation, login, and guest/demo login
+- [ ] Concepts & Languages
+- [ ] Study Blocks
+- [ ] Create/Delete Blocks
+- [ ] Form Decks
 - [ ] Difficulty Levels
 - [ ] Production README
 
@@ -45,21 +45,21 @@ adequate seed data and sufficient CSS styling:
 
 **Soft due date:** 6:00 PM, Wed May 17
 
-### Phase 2: Create blocks (2 day)
+### Phase 2: Create blocks, languages, and concepts (2 days)
 
-**Objective:** Transcribe code blocks and specify which lines/words will be user input through a form.
+**Objective:** Transcribe code blocks and specify which lines/words will be user input through a form. Blocks must have a language and may have any number of concepts.
 
 **Soft due date:** 6:00 PM, Fri May 19
 
-### Phase 3: Display blocks and solutions (2 days)
+### Phase 3: Study blocks and solutions (2 days)
 
 **Objective:** Display blocks as questions, and allow solution comparison. Include Ace code editor.
 
 **Soft due date:** 6:00 PM, Tue May 23
 
-### Phase 4: Languages, Topics and Decks (1 day)
+### Phase 4: Decks (1 day)
 
-**Objective:** Tag blocks with a single languages and multiple topics. Form decks via combinations of languages and topics.
+**Objective:** Form decks via combinations of languages and concepts.
 
 **Soft due date:** 6:00 PM, Wed May 24
 

@@ -23,7 +23,7 @@ const Home = (props) => (
             <h2 className="dark-heading">Never Forget a Concept</h2>
             <p>By transcribing textbook code into interactive flashcards,
             CodeBlocks allows you to quickly review and master
-            programming topics.</p>
+            programming concepts.</p>
           <GuestLoginContainer />
           </article>
         </section>
@@ -53,7 +53,7 @@ const Home = (props) => (
                 <li className="row">
                   <i className="fa fa-check" aria-hidden="true"></i>
                   <p>
-                  Organize your CodeBlocks by language and topic
+                  Organize your CodeBlocks by language and concept
                   </p>
                 </li>
                 <li className="row">
