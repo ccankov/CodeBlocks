@@ -13,7 +13,7 @@ const Footer = (props) => (
             About
           </a>
         </li>
-        <li><a>Contact</a></li>
+        <li><a href="mailto:cankov.chris@gmail.com">Contact</a></li>
       </ul>
     </menu>
     <menu>
