@@ -14,6 +14,10 @@
 **Home**
  - NavbarContainer
     * Navbar
+ - HomeActionsContainer
+    * HomeActions
+ - GuestLoginContainer
+    * GuestLogin
  - Study
  - Library
  - Footer

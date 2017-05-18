@@ -62,7 +62,7 @@ class Navbar extends React.Component {
             </Route>
             <Route>
               <div className="row">
-                <ul><li><a>{ email }</a></li></ul>
+                <ul><li><p>{ email }</p></li></ul>
                 <button onClick={ this.handleLogout }>Log Out</button>
               </div>
             </Route>

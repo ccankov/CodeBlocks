@@ -34,6 +34,14 @@
   align-items: center;
 }
 
+.navbar li p {
+  display: flex;
+  align-items: center;
+  color: $gray;
+  font-size: 15px;
+  font-weight: bold;
+}
+
 .navbar a {
   font-weight: bold;
   height: 100%;
