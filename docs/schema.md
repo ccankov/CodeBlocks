@@ -33,18 +33,18 @@ column name | data type | details
 id          | integer   | not null, primary key
 name        | string    | not null
 
-## topics
+## concepts
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 name        | string    | not null
 
-## block_topics
+## block_concepts
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-block_id     | integer   | not null, foreign key (references blocks), indexed, unique [topic_id]
-topic_id    | integer   | not null, foreign key (references topics), indexed
+block_id     | integer   | not null, foreign key (references blocks), indexed, unique [concept_id]
+concept_id    | integer   | not null, foreign key (references concepts), indexed
 
 ## decks
 column name | data type | details
@@ -54,12 +54,12 @@ name        | string    | not null
 mastery     | integer   | not null
 author_id   | integer   | not null, foreign key (references users), indexed
 
-## deck_topics
+## deck_concepts
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-deck_id     | integer   | not null, foreign key (references decks), indexed, unique [topic_id]
-topic_id    | integer   | not null, foreign key (references topics), indexed
+deck_id     | integer   | not null, foreign key (references decks), indexed, unique [concept_id]
+concept_id    | integer   | not null, foreign key (references concepts), indexed
 
 ## deck_languages
 column name | data type | details

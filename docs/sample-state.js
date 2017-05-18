@@ -22,7 +22,7 @@
       name: "JavaScript"
     }
   },
-  topics {
+  concepts {
     1: {
       id: 1,
       name: "Inheritance"
@@ -37,7 +37,7 @@
       public: true,
       author_id: 1,
       language_id: 1,
-      topic_ids: [1, 2, 3]
+      concept_ids: [1, 2, 3]
     }
   },
   decks: {
@@ -46,7 +46,7 @@
       name: "Ruby on Rails",
       mastery: 37,
       author_id: 1,
-      topic_ids: [1, 3],
+      concept_ids: [1, 3],
       language_ids: [1, 2],
       block_ids: [1, 35, 83, 93]
     }

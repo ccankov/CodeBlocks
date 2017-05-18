@@ -24,7 +24,7 @@
 
 - `GET /api/blocks`
   - Blocks index/search
-  - accepts `topic_ids` query param to filter blocks by topics
+  - accepts `concept_ids` query param to filter blocks by concepts
   - accepts `lang_ids` query param to filter blocks by languages
   - accepts `user_id` query param to filter blocks by author
 - `POST /api/blocks`
@@ -32,7 +32,7 @@
 - `PATCH /api/blocks/:id`
 - `DELETE /api/blocks/:id`
 
-**NOTE:** All block operations always include associated topic, and language records.
+**NOTE:** All block operations always include associated concept, and language records.
 
 ### Languages
 
@@ -41,12 +41,12 @@
 - `POST /api/languages`
 - `DELETE /api/languages/:id`
 
-### Topics
+### Concepts
 
-- `GET /api/topics`
+- `GET /api/concepts`
   - includes query param for typeahead suggestions
-- `POST /api/topics`
-- `DELETE /api/topics/:id`
+- `POST /api/concepts`
+- `DELETE /api/concepts/:id`
 
 ### Decks
 
@@ -54,12 +54,12 @@
   - decks index/search
   - returns all decks made by the current user
 - `POST /api/decks`
-  - handles creating associated deck_topics and deck_languages
+  - handles creating associated deck_concepts and deck_languages
 - `GET /api/decks/:id`
   - gets a single deck along with its blocks
 - `PATCH /api/decks/:id`
-  - handles modifying associated deck_topics and deck_languages
+  - handles modifying associated deck_concepts and deck_languages
 - `DELETE /api/decks/:id`
-  - deletes orphaned deck_topics and deck_languages
+  - deletes orphaned deck_concepts and deck_languages
 
-**NOTE:** All deck operations always include associated topic and language records.
+**NOTE:** All deck operations always include associated concept and language records.
