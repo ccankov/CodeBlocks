@@ -11,7 +11,6 @@
 ### Users
 
 - `POST /api/users`
-- `PATCH /api/users`
 - `GET /api/user/:id/blocks`
   - returns block progress stats from user_blocks table for this user
 

@@ -7,6 +7,14 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_many :user_blocks
+  has_many :authored_blocks,
+           primary_key: :id,
+           foreign_key: :author_id
+  has_many :studied_blocks,
+           through: :user_blocks,
+           source: :block
+
   def self.find_by_credentials(options)
     email = options[:email]
     password = options[:password]
