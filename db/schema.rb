@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170518162128) do
+ActiveRecord::Schema.define(version: 20170518173839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 20170518162128) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["block_id", "concept_id"], name: "index_block_concepts_on_block_id_and_concept_id", unique: true, using: :btree
+  end
+
+  create_table "blocks", force: :cascade do |t|
+    t.json     "codeblock"
+    t.string   "output"
+    t.string   "prompt",                      null: false
+    t.boolean  "public",      default: false, null: false
+    t.integer  "author_id",                   null: false
+    t.integer  "language_id",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["author_id"], name: "index_blocks_on_author_id", using: :btree
+    t.index ["language_id"], name: "index_blocks_on_language_id", using: :btree
   end
 
   create_table "concepts", force: :cascade do |t|
