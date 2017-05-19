@@ -128,3 +128,49 @@ hr {
   color: $error;
   font-size: 13px;
 }
+
+.labels {
+  height: 4vh;
+  width: 90%;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: visible;
+  overflow-y: hidden;
+}
+
+.labelScroll::-webkit-scrollbar-track
+{
+	border-radius: 6px;
+}
+
+.labelScroll::-webkit-scrollbar
+{
+  height: 6px;
+}
+
+.labelScroll::-webkit-scrollbar-thumb
+{
+  box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.15);
+	border-radius: 6px;
+	background-color: $secondary;
+}
+
+.labelScroll::-webkit-scrollbar-thumb:hover
+{
+  box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.2);
+}
+
+
+.label {
+  height: 18px;
+  font-size: 12px;
+  font-weight: bold;
+  display: table-cell;
+  color: $white;
+  text-align: left;
+  vertical-align: middle;
+  background-color: $lighter-accent;
+  padding: 0px 8px;
+  margin: 0 5px;
+  border-radius: 10px;
+}
