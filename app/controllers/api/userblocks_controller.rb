@@ -18,7 +18,7 @@ class Api::UserblocksController < ApplicationController
     )
     begin
       UserBlock.transaction do
-        @oldentry.destroy
+        @oldentry.destroy if @oldentry
         @newentry.save
       end
       render :show

@@ -18,13 +18,12 @@ class Block < ApplicationRecord
            through: :block_concepts,
            source: :concept
 
-  def self.filter(user_id, language_ids, concept_ids)
+  def self.filter(user_id, language_ids, concept_ids, current_user)
     blocks = Block.left_joins(:concepts).includes(:author, :language)
+    blocks = blocks.where('author_id = ? or public = ?', current_user.id, true)
     blocks = blocks.where(author_id: user_id) if user_id
     blocks = blocks.where(language_id: language_ids) if language_ids
-    if concept_ids
-      blocks = blocks.where('concepts.id IN (?)', concept_ids)
-    end
+    blocks = blocks.where('concepts.id IN (?)', concept_ids) if concept_ids
     blocks.load
   end
 end

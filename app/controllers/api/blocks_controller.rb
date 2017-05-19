@@ -5,7 +5,7 @@ class Api::BlocksController < ApplicationController
     user_id = params[:user_id]
     lang_ids = params[:language_ids] ? params[:language_ids].split(',') : nil
     concept_ids = params[:concept_ids] ? params[:concept_ids].split(',') : nil
-    @blocks = Block.filter(user_id, lang_ids, concept_ids)
+    @blocks = Block.filter(user_id, lang_ids, concept_ids, current_user)
     render :index
   end
 
@@ -36,7 +36,7 @@ class Api::BlocksController < ApplicationController
 
   def destroy
     @block = Block.find_by(id: params[:id])
-    if @block
+    if @block && @block.author_id == current_user.id
       @block.destroy
       render json: @block
     else
