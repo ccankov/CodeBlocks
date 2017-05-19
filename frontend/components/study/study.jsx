@@ -28,45 +28,61 @@ const Study = (props) => (
             </div>
           </section>
         </section>
-        <section className="sidebar-gauge">
-
+        <section className="row sidebar-gauge">
+          <svg viewBox="0 0 100 100" width="80%">
+            <circle r="45%" cx="50" cy="50" fill="none"
+              stroke="#6E3667"
+            ></circle>
+            <circle r="45%" cx="50" cy="50" fill="none"
+              className="stroke" style={{strokeDasharray: "100 300"}}
+            ></circle>
+          </svg>
+          <div className="col floating-text">
+            <p className="big-text">16<span>%</span></p>
+            <p className="small-text">Mastered</p>
+          </div>
         </section>
-        <section className="sidebar-herobar">
-
+        <section className="row sidebar-bar hero">
+          <p>
+            <i className="fa fa-star" aria-hidden="true"></i><i>Master</i>
+          </p>
+          <div className="progress-back">
+            <div className="progess-fill" style={{width: "50%"}}></div>
+          </div>
         </section>
         <section className="col sidebar-bars">
-          <div className="sidebar-bar">
-            <p className="sidebar-label">
-
+          <section className="row sidebar-bar">
+            <p>
+              <i>Unanswered</i>
             </p>
-            <div className="sidebar-progress">
-
+            <div className="progress-back">
+              <div className="progess-fill" style={{width: "15%"}}></div>
             </div>
-          </div>
-          <div className="sidebar-bar">
-            <p className="sidebar-label">
-
+          </section>
+          <section className="row sidebar-bar">
+            <p>
+              <i>Novice</i>
             </p>
-            <div className="sidebar-progress">
-
+            <div className="progress-back">
+              <div className="progess-fill" style={{width: "5%"}}></div>
             </div>
-          </div>
-          <div className="sidebar-bar">
-            <p className="sidebar-label">
-
+          </section>
+          <section className="row sidebar-bar">
+            <p>
+              <i>Intermediate</i>
             </p>
-            <div className="sidebar-progress">
-
+            <div className="progress-back">
+              <div className="progess-fill" style={{width: "30%"}}></div>
             </div>
-          </div>
-          <div className="sidebar-bar">
-            <p className="sidebar-label">
-
+          </section>
+          <section className="row sidebar-bar">
+            <p>
+              <i>Master</i>
             </p>
-            <div className="sidebar-progress">
-
+            <div className="progress-back">
+              <div className="progess-fill" style={{width: "50%"}}></div>
             </div>
-          </div>
+          </section>
         </section>
       </section>
     </aside>
