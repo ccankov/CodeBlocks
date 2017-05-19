@@ -3,6 +3,6 @@ class Concept < ApplicationRecord
 
   has_many :block_concepts
   has_many :blocks,
-    through: :block_concepts,
-    source: :block
+           through: :block_concepts,
+           source:  :block
 end

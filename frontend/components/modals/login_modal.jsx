@@ -9,7 +9,7 @@ const _nullUser = {
 const _guestUser = {
   id: null,
   email: 'guest@codeblocks.us',
-  password: 'imaguest'
+  password: 'password'
 };
 
 class LoginModal extends React.Component {

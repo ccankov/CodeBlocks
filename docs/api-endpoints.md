@@ -11,8 +11,13 @@
 ### Users
 
 - `POST /api/users`
-- `GET /api/user/:id/blocks`
-  - returns block progress stats from user_blocks table for this user
+
+### UserBlocks
+
+- `GET /api/userblocks`
+  - return all entries from user_blocks table for current user, including block objects
+- `POST /api/userblocks`
+  - creates a new user_blocks entry to update what level a user is on for a given block
 
 ### Session
 
@@ -28,22 +33,19 @@
   - accepts `user_id` query param to filter blocks by author
 - `POST /api/blocks`
 - `GET /api/blocks/:id`
-- `PATCH /api/blocks/:id`
 - `DELETE /api/blocks/:id`
 
-**NOTE:** All block operations always include associated concept, and language records.
+**NOTE:** All block operations always include associated concept and language records.
 
 ### Languages
 
 - `GET /api/languages`
-  - includes query param for typeahead suggestions
 - `POST /api/languages`
 - `DELETE /api/languages/:id`
 
 ### Concepts
 
 - `GET /api/concepts`
-  - includes query param for typeahead suggestions
 - `POST /api/concepts`
 - `DELETE /api/concepts/:id`
 

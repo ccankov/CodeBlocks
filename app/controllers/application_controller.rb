@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    !!current_user
+    redirect_to :root unless current_user
   end
 
   def login(user)

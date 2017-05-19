@@ -7,7 +7,7 @@ const mapDispatchToProps = dispatch => ({
   login: () => dispatch(login({
     id: null,
     email: 'guest@codeblocks.us',
-    password: 'imaguest'
+    password: 'password'
   }))
 });
 
