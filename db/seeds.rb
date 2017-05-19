@@ -2,6 +2,7 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
 guest = User.create(email: 'guest@codeblocks.us', password: 'password')
+chris = User.create(email: 'chris@codeblocks.us', password: 'password')
 
 js = Language.create(name: 'javascript')
 ruby = Language.create(name: 'ruby')
@@ -22,8 +23,8 @@ codeblock2 = Block.create(
   codeblock: JSON.parse('{"allLines":["function sum(nums) {","  let count = 0;","","  function addNum(num) {","    count += num;","  }","","  for (let i = 0; i < nums.length; i++){","    addNum(nums[i]);","  }","","  return count;","}","","sum([1, 3, 5]) // => 9"],"editLines":[5],"editRanges":[]}'),
   output: '9',
   prompt: 'Fill in the blanks to make addNum close over count in Sum.',
-  public: false,
-  author_id: guest.id,
+  public: true,
+  author_id: chris.id,
   language_id: js.id
 )
 
@@ -35,6 +36,6 @@ codeblock2_concept = BlockConcept.create(
   block_id: codeblock2.id, concept_id: closure.id
 )
 
-guest_codeblock1 = UserBlock.create(
+guest_codeblock2 = UserBlock.create(
   user_id: guest.id, block_id: codeblock2.id, level: 1
 )

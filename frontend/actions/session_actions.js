@@ -1,6 +1,7 @@
 import * as APIUtil        from '../util/session_api_util';
 import { receiveErrors }   from './error_actions';
 import { fetchUserblocks } from './block_actions';
+import { fetchBlocks }     from './block_actions';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 
@@ -9,14 +10,21 @@ export const receiveCurrentUser = (currentUser = null) => ({
   currentUser
 });
 
-export const login = user => dispatch => (
-  APIUtil.login(user).then(
-    currentUser => dispatch(receiveCurrentUser(currentUser)),
+export const login = user => dispatch => {
+  let thisUser = null;
+  return APIUtil.login(user).then(
+    currentUser => {
+      thisUser = currentUser;
+      dispatch(receiveCurrentUser(currentUser));
+    },
     errors => dispatch(receiveErrors(errors.responseJSON))
   ).then(
-    () => dispatch(fetchUserblocks())
-  )
-);
+    () => {
+      dispatch(fetchUserblocks());
+      dispatch(fetchBlocks(thisUser.id));
+    }
+  );
+};
 
 export const logout = () => dispatch => (
   APIUtil.logout().then(
