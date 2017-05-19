@@ -11,7 +11,7 @@ const languageReducer = (state = {}, action) => {
       newState[action.language.id] = action.language;
       return newState;
     case REMOVE_LANGUAGE:
-      delete newState[action.language.id];
+      delete newState[action.id];
       return newState;
     default:
       return state;

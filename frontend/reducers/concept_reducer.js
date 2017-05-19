@@ -11,7 +11,7 @@ const conceptReducer = (state = {}, action) => {
       newState[action.concept.id] = action.concept;
       return newState;
     case REMOVE_CONCEPT:
-      delete newState[action.concept.id];
+      delete newState[action.id];
       return newState;
     default:
       return state;
