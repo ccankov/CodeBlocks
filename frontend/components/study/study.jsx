@@ -50,6 +50,7 @@ const Study = (props) => (
             <div className="progess-fill" style={{width: "50%"}}></div>
           </div>
         </section>
+        <hr className="sidebar-divider" />
         <section className="col sidebar-bars">
           <section className="row sidebar-bar">
             <p>

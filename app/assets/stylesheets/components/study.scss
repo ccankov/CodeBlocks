@@ -63,7 +63,7 @@
 
 .sidebar-info {
   border-radius: 3px;
-  margin-top: 3vh;
+  margin-top: 2vh;
   background-color: $light-accent;
 
   hr {
@@ -137,21 +137,21 @@
 
 .sidebar-bars {
   width: 100%;
+  justify-content: space-between;
 }
 
 .hero {
   background: $light-accent;
   border: 2px solid $lighter-accent;
-  margin: 2vh 0;
+  margin: 3vh 0;
 }
 
 .sidebar-bar {
   width: 100%;
   border-radius: 15px;
   padding: 0 1vw;
-  height: 5vh;
+  height: 4vh;
   font-size: 1em;
-  justify-content: space-between;
 
   p {
     display: flex;
@@ -178,6 +178,10 @@
       background: $sharp-accent;
     }
   }
+}
+
+.sidebar-divider {
+  border-color: $lighter-accent;
 }
 
 .study-main {
