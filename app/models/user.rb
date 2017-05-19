@@ -10,7 +10,8 @@ class User < ApplicationRecord
   has_many :user_blocks
   has_many :authored_blocks,
            primary_key: :id,
-           foreign_key: :author_id
+           foreign_key: :author_id,
+           class_name: :Block
   has_many :studied_blocks,
            through: :user_blocks,
            source: :block
