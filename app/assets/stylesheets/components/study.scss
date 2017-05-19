@@ -1,0 +1,33 @@
+.study {
+  padding-top: 0px;
+  height: 100vh;
+  width: 100vw;
+}
+
+.study-sidebar {
+  height: 100%;
+  width: 25vw;
+  background-color: $secondary;
+  border-right: 4px solid $sharp-accent;
+  box-sizing: border-box;
+  box-shadow: 0 4px 4px rgba(0,0,0,0.25);
+}
+
+.study-main {
+  box-sizing: border-box;
+  padding: 16px 64px;
+  width: 75vw;
+  height: 100%;
+}
+
+.study-right-text {
+  font-family: $paragraph;
+}
+
+.study-block {
+
+}
+
+.study-buttons {
+
+}
