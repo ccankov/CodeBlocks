@@ -71,7 +71,7 @@ class Sidebar extends React.Component {
               <i className="fa fa-home" aria-hidden="true"></i>
             </button>
           </Link>
-          <p><span>Studying:</span> My Collection</p>
+          <p><strong>Studying:</strong> My Collection</p>
         </section>
         <section className="sidebar-main">
           <section className="col sidebar-info">
@@ -101,8 +101,8 @@ class Sidebar extends React.Component {
               ></circle>
             </svg>
             <div className="col floating-text">
-              <p className="big-text">{ this.state.mastery }<span>%</span></p>
-              <p className="small-text">Mastered</p>
+            <p className="big-text">{ this.state.mastery }<strong>%</strong></p>
+            <p className="small-text">Mastered</p>
             </div>
           </section>
           <section className="row sidebar-bar hero">

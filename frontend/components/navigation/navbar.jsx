@@ -40,7 +40,7 @@ class Navbar extends React.Component {
           <Link to="/">
             <i className="fa fa-cubes" aria-hidden="true"></i>
             <p className="logo">
-              <strong className="logo-strong">Code</strong><span>Blocks</span>
+              <strong className="logo-strong">Code</strong><small>Blocks</small>
             </p>
           </Link>
           <ul className="row">

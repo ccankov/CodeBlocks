@@ -1,4 +1,9 @@
 import React from 'react';
+import brace from 'brace';
+import AceEditor from 'react-ace';
+
+import 'brace/mode/java';
+import 'brace/theme/github';
 
 class BlockCard extends React.Component {
   constructor(props) {
@@ -38,10 +43,18 @@ class BlockCard extends React.Component {
             <h1>Level: <strong className={ lvl }>{ level }</strong></h1>
           </div>
         </header>
-        <section>
+        <section className="card-main">
           <h1>
             { this.props.block ? this.props.block.prompt : '' }
           </h1>
+          <AceEditor
+            mode="java"
+            theme="github"
+            name="block"
+          />,
+          <p className="output">
+
+          </p>
         </section>
       </article>
     );
