@@ -110,7 +110,7 @@ class Sidebar extends React.Component {
               <i className="fa fa-star" aria-hidden="true"></i><i>Master</i>
             </p>
             <div className="progress-back">
-              <div className="progess-fill" style={{
+              <div className="progress-fill good" style={{
                   width: this.state.mastery.toString() + "%"
                 }}></div>
             </div>
@@ -122,7 +122,7 @@ class Sidebar extends React.Component {
                 <i>Unanswered</i>
               </p>
               <div className="progress-back">
-                <div className="progess-fill" style={{
+                <div className="progress-fill inactive" style={{
                   width: (Math.floor(this.state.unanswered /
                     this.state.totalBlocks * 100)).toString() + "%"
                 }}></div>
@@ -133,7 +133,7 @@ class Sidebar extends React.Component {
                 <i>Novice</i>
               </p>
               <div className="progress-back">
-                <div className="progess-fill" style={{
+                <div className="progress-fill inactive" style={{
                   width: (Math.floor(this.state.novice /
                     this.state.totalBlocks * 100)).toString() + "%"
                 }}></div>
@@ -144,7 +144,7 @@ class Sidebar extends React.Component {
                 <i>Intermediate</i>
               </p>
               <div className="progress-back">
-                <div className="progess-fill" style={{
+                <div className="progress-fill inactive" style={{
                   width: (Math.floor(this.state.intermediate /
                     this.state.totalBlocks * 100)).toString() + "%"
                 }}></div>
@@ -155,7 +155,7 @@ class Sidebar extends React.Component {
                 <i>Master</i>
               </p>
               <div className="progress-back">
-                <div className="progess-fill" style={{
+                <div className="progress-fill inactive" style={{
                   width: (Math.floor(this.state.master /
                     this.state.totalBlocks * 100)).toString() + "%"
                 }}></div>

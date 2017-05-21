@@ -27,6 +27,7 @@
     * Sidebar
  - BlockContainer
     * Block
+       * BlockCard
 
 **Library**
  - NavbarContainer

@@ -125,7 +125,7 @@ hr {
 }
 
 .error-text {
-  color: $error;
+  color: $error-text;
   font-size: 13px;
 }
 
@@ -173,4 +173,38 @@ hr {
   padding: 0px 8px;
   margin: 0 5px;
   border-radius: 10px;
+}
+
+.inactive {
+  background-color: $gray;
+}
+
+.error {
+  color: $white;
+  background-color: $button-error;
+}
+
+.neutral {
+  color: $white;
+    background-color: $button-neutral;
+}
+
+.good {
+  color: $white;
+  background-color: $button-good;
+}
+
+.error-text {
+  background-color: $white;
+  color: $button-error;
+}
+
+.neutral-text {
+  background-color: $white;
+  color: $lighter-accent;
+}
+
+.good-text {
+  background-color: $white;
+  color: $sharp-accent;
 }

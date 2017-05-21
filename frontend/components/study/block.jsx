@@ -1,5 +1,7 @@
 import React from 'react';
 
+import BlockCard from './block_card';
+
 class Block extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +52,7 @@ class Block extends React.Component {
       intermediate.length + novice.length;
     let revealButton = (
       <menu className="row study-buttons">
-        <div className="study-button study-heading center"
+        <div className="study-button accent-text study-heading center good-text"
           onClick={ this.handleReveal }
         >
           Reveal Solution
@@ -59,17 +61,17 @@ class Block extends React.Component {
     );
     let solutionButtons = (
       <menu className="row study-buttons">
-        <div className="study-button error one-third study-heading center"
+        <div className="study-button error-text one-third study-heading center"
              onClick={ this.updateBlockLevel(-1) }
         >
           Incorrect
         </div>
-        <div className="study-button neutral one-third study-heading center"
+        <div className="study-button neutral-text one-third study-heading center"
              onClick={ this.updateBlockLevel(0) }
         >
           Partially correct
         </div>
-        <div className="study-button good one-third study-heading center"
+        <div className="study-button good-text one-third study-heading center"
              onClick={ this.updateBlockLevel(1) }
         >
           Completely correct
@@ -81,9 +83,9 @@ class Block extends React.Component {
         <div className="study-text right">
           <small>Total cards: { totalCards }</small>
         </div>
-        <article className="study-block">
-          { this.state.currentBlock ? this.state.currentBlock.prompt : '' }
-        </article>
+        <BlockCard
+          block={this.state.currentBlock}
+          showSolution={this.state.showSolution} />
         <div className="study-text center-bottom">
           <small>
             { this.state.showSolution ? 'How correct was your solution?' : '' }
