@@ -32,9 +32,11 @@ class Sidebar extends React.Component {
       if (!newState.languages.includes(block.language.name)) {
         newState.languages.push(block.language.name);
       }
-      if (!newState.concepts.includes(block.concept.name)) {
-        newState.concepts.push(block.concept.name);
-      }
+      block.concepts.forEach(concept => {
+        if (!newState.concepts.includes(concept)) {
+          newState.concepts.push(concept);
+        }
+      });
       switch (block.mastery) {
         case undefined:
           newState.unanswered++;
@@ -55,6 +57,12 @@ class Sidebar extends React.Component {
   }
 
   render() {
+    let languageLis = this.state.languages.map((language, idx) => (
+      <div className="label" key={ idx }>{ language }</div>
+    ));
+    let conceptLis = this.state.concepts.map((concept, idx) => (
+      <div className="label" key={ idx }>{ concept }</div>
+    ));
     return (
       <aside className="col study-sidebar">
         <section className="sidebar-header">
@@ -70,17 +78,14 @@ class Sidebar extends React.Component {
             <section className="col info">
               <small>Languages:</small>
               <div className="row labels labelScroll">
-                <div className="label">javascript</div>
-                <div className="label">ruby</div>
+                { languageLis }
               </div>
             </section>
             <hr />
             <section className="col info">
               <small>Concepts:</small>
               <div className="row labels labelScroll">
-                <div className="label">inheritance</div>
-                <div className="label">prototypal inheritance</div>
-                <div className="label">closure</div>
+                { conceptLis }
               </div>
             </section>
           </section>
@@ -90,11 +95,13 @@ class Sidebar extends React.Component {
                 stroke="#6E3667"
               ></circle>
               <circle r="45%" cx="50" cy="50" fill="none"
-                className="stroke" style={{strokeDasharray: "100 300"}}
+                className="stroke" style={{
+                strokeDasharray: (this.state.mastery * 2.83).toString() + " 300"
+                }}
               ></circle>
             </svg>
             <div className="col floating-text">
-              <p className="big-text">16<span>%</span></p>
+              <p className="big-text">{ this.state.mastery }<span>%</span></p>
               <p className="small-text">Mastered</p>
             </div>
           </section>
@@ -103,7 +110,9 @@ class Sidebar extends React.Component {
               <i className="fa fa-star" aria-hidden="true"></i><i>Master</i>
             </p>
             <div className="progress-back">
-              <div className="progess-fill" style={{width: "50%"}}></div>
+              <div className="progess-fill" style={{
+                  width: this.state.mastery.toString() + "%"
+                }}></div>
             </div>
           </section>
           <hr className="sidebar-divider" />
@@ -113,7 +122,10 @@ class Sidebar extends React.Component {
                 <i>Unanswered</i>
               </p>
               <div className="progress-back">
-                <div className="progess-fill" style={{width: "15%"}}></div>
+                <div className="progess-fill" style={{
+                  width: (Math.floor(this.state.unanswered /
+                    this.state.totalBlocks * 100)).toString() + "%"
+                }}></div>
               </div>
             </section>
             <section className="row sidebar-bar">
@@ -121,7 +133,10 @@ class Sidebar extends React.Component {
                 <i>Novice</i>
               </p>
               <div className="progress-back">
-                <div className="progess-fill" style={{width: "5%"}}></div>
+                <div className="progess-fill" style={{
+                  width: (Math.floor(this.state.novice /
+                    this.state.totalBlocks * 100)).toString() + "%"
+                }}></div>
               </div>
             </section>
             <section className="row sidebar-bar">
@@ -129,7 +144,10 @@ class Sidebar extends React.Component {
                 <i>Intermediate</i>
               </p>
               <div className="progress-back">
-                <div className="progess-fill" style={{width: "30%"}}></div>
+                <div className="progess-fill" style={{
+                  width: (Math.floor(this.state.intermediate /
+                    this.state.totalBlocks * 100)).toString() + "%"
+                }}></div>
               </div>
             </section>
             <section className="row sidebar-bar">
@@ -137,7 +155,10 @@ class Sidebar extends React.Component {
                 <i>Master</i>
               </p>
               <div className="progress-back">
-                <div className="progess-fill" style={{width: "50%"}}></div>
+                <div className="progess-fill" style={{
+                  width: (Math.floor(this.state.master /
+                    this.state.totalBlocks * 100)).toString() + "%"
+                }}></div>
               </div>
             </section>
           </section>

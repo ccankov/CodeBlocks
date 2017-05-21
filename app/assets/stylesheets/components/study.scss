@@ -113,15 +113,14 @@
       position: relative;
       color: $white;
       line-height: 1.11em;
-      font-size: 4.5em;
-      width: 100%;
+      font-size: 4.2em;
 
       span {
         font-size: 20px;
         font-weight: bold;
         color: $white;
-        bottom: 20%;
-        right: 10%;
+        bottom: 0%;
+        right: -20%;
         display: block;
         position: absolute;
       }
@@ -251,8 +250,19 @@
     box-shadow: 0 3px 4px rgba(0,0,0,0.25);
   }
 
-  .study-button:hover {
-    background: $white;
+  .error {
+    color: $white;
+    background-color: $button-error;
+  }
+
+  .neutral {
+    color: $white;
+    background-color: $button-neutral;
+  }
+
+  .good {
+    color: $white;
+    background-color: $button-good;
   }
 }
 

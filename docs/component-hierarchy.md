@@ -23,8 +23,8 @@
  - Footer
 
 **Study**
- - StudySidebarContainer
-    * StudySidebar
+ - SidebarContainer
+    * Sidebar
  - BlockContainer
     * Block
 
