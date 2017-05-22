@@ -78,14 +78,17 @@ class Block extends React.Component {
         </div>
       </menu>
     );
+    let card = this.state.currentBlock ? (
+      <BlockCard
+        block={this.state.currentBlock}
+        showSolution={this.state.showSolution} />
+    ) : '';
     return (
       <section className="col study-main">
         <div className="study-text right">
           <small>Total cards: { totalCards }</small>
         </div>
-        <BlockCard
-          block={this.state.currentBlock}
-          showSolution={this.state.showSolution} />
+        { card }
         <div className="study-text center-bottom">
           <small>
             { this.state.showSolution ? 'How correct was your solution?' : '' }

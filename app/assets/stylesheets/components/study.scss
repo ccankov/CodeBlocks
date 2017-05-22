@@ -294,8 +294,10 @@
 
 .code-container {
   width: 100%;
+  flex: 1;
+  align-items: stretch;
 
-  section {
+  .code-pane {
     flex: 1;
   }
 
@@ -318,11 +320,26 @@
   border: 2px solid $light-gray;
   border-width: 2px 0 2px 0;
   box-sizing: border-box;
+  flex: 1;
+}
+
+#solution {
+  border: 2px solid $light-gray;
+  border-width: 2px 0 2px 0;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.editable {
+  background-color: $button-good;
+  opacity: 1;
+  position: absolute;
 }
 
 .output-row {
   justify-content: flex-start;
   padding: 15px 30px;
+  width: 100%;
 }
 
 .output-label {
