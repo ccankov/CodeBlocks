@@ -246,18 +246,6 @@
         border: 1px solid $gray;
       }
     }
-
-    section {
-      height: 90%;
-      padding: 15px 30px;
-
-      h1 {
-        font-size: 1.5em;
-        text-shadow: none;
-        text-align: left;
-        white-space: normal;
-      }
-    }
   }
 
   .study-heading {
@@ -292,11 +280,71 @@
 }
 
 .card-main {
+  align-items: flex-start;
+  height: 90%;
 
+  h1 {
+    padding: 15px 30px;
+    font-size: 1.5em;
+    text-shadow: none;
+    text-align: left;
+    white-space: normal;
+  }
+}
+
+.code-container {
+  width: 100%;
+
+  section {
+    flex: 1;
+  }
+
+  .solution {
+    border-left: 2px solid $light-gray;
+
+    p {
+      background-color: "#f7f7f5";
+      opacity: 0.7;
+    }
+
+    input {
+      background-color: "#f7f7f5";
+      opacity: 0.7;
+    }
+  }
+}
+
+#block {
+  border: 2px solid $light-gray;
+  border-width: 2px 0 2px 0;
+  box-sizing: border-box;
+}
+
+.output-row {
+  justify-content: flex-start;
+  padding: 15px 30px;
+}
+
+.output-label {
+  font-family: $paragraph;
+  font-size: 14px;
+  height: 100%;
+  padding-right: 10px;
+  color: $dark-gray;
 }
 
 .output {
+  font-size: 16px;
+  font-weight: bold;
 
+  input {
+    margin: 0;
+    height: 100%;
+    padding: 0;
+    padding-left: 10px;
+    font-family: $code;
+    font-weight: normal;
+  }
 }
 
 @media (max-width: 1000px) {

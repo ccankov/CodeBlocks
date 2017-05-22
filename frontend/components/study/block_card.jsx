@@ -2,8 +2,8 @@ import React from 'react';
 import brace from 'brace';
 import AceEditor from 'react-ace';
 
-import 'brace/mode/java';
-import 'brace/theme/github';
+import 'brace/theme/xcode';
+import '../../util/selected_languages';
 
 class BlockCard extends React.Component {
   constructor(props) {
@@ -29,6 +29,40 @@ class BlockCard extends React.Component {
     let conceptLis = block ? block.concepts.map((concept, idx) => (
       <div className="label bw" key={ idx }>{ concept }</div>
     )) : [];
+    let codeblock = block ? block.codeblock.allLines.join('\n') : '';
+    let output = '';
+    if (block && block.output) {
+      output = (
+        <section className="row output-row">
+          <p className="output-label">
+            OUTPUT
+          </p>
+          <p className="output">
+            >
+            <input defaultValue={ block.output }></input>
+          </p>
+        </section>
+      );
+    }
+    let solution = '';
+    if (showSolution) {
+      solution = (
+        <section className="one-half solution">
+          <AceEditor
+            mode={ block ? language : "text" }
+            theme="xcode"
+            name="block"
+            highlightActiveLine={false}
+            fontSize={16}
+            readOnly={true}
+            style={{ width: "100%", backgroundColor: "#f7f7f5", opacity: 0.7 }}
+            value={ codeblock }
+            editorProps={{$blockScrolling: true}}
+            />
+          { output }
+        </section>
+      );
+    }
     return (
       <article className="study-block">
         <header className="row">
@@ -43,18 +77,26 @@ class BlockCard extends React.Component {
             <h1>Level: <strong className={ lvl }>{ level }</strong></h1>
           </div>
         </header>
-        <section className="card-main">
+        <section className="col card-main">
           <h1>
             { this.props.block ? this.props.block.prompt : '' }
           </h1>
-          <AceEditor
-            mode="java"
-            theme="github"
-            name="block"
-          />,
-          <p className="output">
-
-          </p>
+          <section className="row code-container">
+            <section>
+              <AceEditor
+                mode={ block ? language : "text" }
+                theme="xcode"
+                name="block"
+                fontSize={16}
+                focus={true}
+                style={{ width: "100%" }}
+                value={ codeblock }
+                editorProps={{$blockScrolling: true}}
+                />
+              { output }
+            </section>
+            { solution }
+          </section>
         </section>
       </article>
     );
