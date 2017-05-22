@@ -3,6 +3,7 @@ import brace from 'brace';
 import AceEditor from 'react-ace';
 
 import 'brace/theme/xcode';
+import * as _ from 'lodash';
 import '../../util/selected_languages';
 import BlockProblem from './block_problem';
 
@@ -39,6 +40,7 @@ class BlockCard extends React.Component {
           fontSize={16}
           focus={true}
           readOnly={true}
+          highlightActiveLine={false}
           style={{ width: "100%", backgroundColor: "#f2f2f2", opacity: 1 }}
           value={ block.codeblock.allLines.join('\n') }
           editorProps={{$blockScrolling: true}}

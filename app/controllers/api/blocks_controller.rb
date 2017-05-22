@@ -15,7 +15,8 @@ class Api::BlocksController < ApplicationController
     @block.author_id = current_user.id
     begin
       Block.transaction do
-        @block.save
+        @block.process_and_save
+        debugger
         process_concepts(params[:concepts]) if params[:concepts]
       end
       render :show

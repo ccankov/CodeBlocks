@@ -23,7 +23,8 @@ class Block extends React.Component {
     if (this.state.currentBlock) {
       switch (offset) {
         case 1:
-        if (level < this.state.currentBlock.max_level) { level++; }
+        if (!this.state.currentBlock.max_level ||
+          level < this.state.currentBlock.max_level) { level++; }
         break;
         case -1:
         if (level > 0) { level--; }
