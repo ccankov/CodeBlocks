@@ -74,10 +74,11 @@ class BlockProblem extends React.Component {
         { output }
         </section>
       )
+    },() => {
+      if (this.state.editor) {
+        this.removeMarkers(this.state.editor, block, levelKeyword);
+      }
     });
-    if (this.state.editor) {
-      this.removeMarkers(this.state.editor, block, levelKeyword);
-    }
   }
 
   componentWillReceiveProps(newProps) {
@@ -94,6 +95,7 @@ class BlockProblem extends React.Component {
     let ace = require('brace');
     let Range = ace.acequire('ace/range').Range;
     let session = editor.getSession();
+    editor.setReadOnly(false);
     editor.$blockScrolling = Infinity;
     editor.setOption("dragEnabled", false);
     let markerIds = [];
@@ -110,6 +112,9 @@ class BlockProblem extends React.Component {
       });
     } else {
       editor.setReadOnly(true);
+      let newRange = new Range(0, 0, 100, 0);
+      let markerId = session.addMarker(newRange, "editable", "noedit", false);
+      markerIds.push(markerId);
     }
 
     editor.keyBinding.addKeyboardHandler({
