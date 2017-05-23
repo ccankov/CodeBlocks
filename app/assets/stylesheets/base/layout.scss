@@ -175,6 +175,12 @@ hr {
   border-radius: 10px;
 }
 
+.bw {
+  color: $black;
+  background: $white;
+  border: 1px solid $gray;
+}
+
 .inactive {
   background-color: $gray;
 }
@@ -207,4 +213,8 @@ hr {
 .good-text {
   background-color: $white;
   color: $sharp-accent;
+}
+
+.capital {
+  text-transform: capitalize;
 }

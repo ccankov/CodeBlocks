@@ -31,6 +31,20 @@ class BlockCard extends React.Component {
         lvl = 'good-text';
         break;
     }
+    let output = '';
+    if (block.output) {
+      output = (
+        <section className="row output-row">
+          <p className="output-label">
+            OUTPUT
+          </p>
+          <p className="output">
+            >
+            <input defaultValue={ block.output } disabled></input>
+          </p>
+        </section>
+      );
+    }
     let solution = block && showSolution ? (
       <section className="col code-pane solution">
         <AceEditor
@@ -45,15 +59,7 @@ class BlockCard extends React.Component {
           value={ block.codeblock.allLines.join('\n') }
           editorProps={{$blockScrolling: true}}
         />
-        <section className="row output-row">
-          <p className="output-label">
-            OUTPUT
-          </p>
-          <p className="output">
-            >
-            <input defaultValue={ block.output } disabled></input>
-          </p>
-        </section>
+      { output }
       </section>
     ) : '';
     return (

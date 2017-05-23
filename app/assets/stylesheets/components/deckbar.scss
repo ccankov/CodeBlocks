@@ -1,0 +1,23 @@
+.deck-sidebar {
+  width: 19vw;
+  min-width: 150px;
+  background-color: $white;
+  align-items: stretch;
+  box-sizing: border-box;
+
+  p {
+    flex: 0;
+    background-color: $lightest-gray;
+    padding: 20px 15px;
+    border-right: 3px solid $light-gray;
+    border-bottom: 1px solid $light-gray;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.deck-sidebar-list {
+  margin-top: 10px;
+  background-color: $lightest-gray;
+  flex: 1;
+}

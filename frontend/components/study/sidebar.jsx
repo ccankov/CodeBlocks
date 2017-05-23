@@ -19,6 +19,11 @@ class Sidebar extends React.Component {
     this.state = Object.assign({}, _nullState);
   }
 
+  componentDidMount() {
+    let newState = this.processBlocks(this.props.blocks);
+    this.setState(newState);
+  }
+
   componentWillReceiveProps(nextProps) {
     let newState = this.processBlocks(nextProps.blocks);
     this.setState(newState);

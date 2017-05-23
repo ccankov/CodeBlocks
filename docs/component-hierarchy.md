@@ -28,6 +28,7 @@
  - BlockContainer
     * Block
        * BlockCard
+          * BlockProblem
 
 **Library**
  - NavbarContainer

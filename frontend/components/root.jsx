@@ -16,7 +16,7 @@ const Root = ({ store }) => (
           <Route exact path="/">
             <AuthRoute path="/" component={ Home } />
           </Route>
-          <Route exact path="/library">
+          <Route path="/library">
             <ProtectedRoute path="/library" component={ Library } />
           </Route>
           <Route exact path="/study">
