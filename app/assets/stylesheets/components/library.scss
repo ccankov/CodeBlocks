@@ -12,6 +12,38 @@
   width: 80vw;
   min-width: 650px;
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.language-select {
+  margin: 0;
+  border: 1px solid #ccc;
+  width: 120px;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    padding: 5px 8px;
+    padding-right: 22px;
+    width: 100%;
+  }
+
+  p {
+    position: absolute;
+    right: 6px;
+  }
+
+  i {
+    color: $gray;
+  }
 }
 
 .block-form {
@@ -26,10 +58,6 @@
     margin: 20px;
     justify-content: flex-start;
     box-sizing: border-box;
-
-    p {
-      padding-bottom: 10px;
-    }
   }
 
   .floating-label {
@@ -96,6 +124,15 @@
   top: -3px;
 }
 
+.align-start {
+  align-items: flex-start;
+}
+
+.slim-button {
+  padding: 5px 10px;
+  margin: 10px 0px;
+}
+
 .heading {
   font-weight: normal;
   color: #88D317;
@@ -105,4 +142,19 @@
   margin-bottom: 10px;
   padding-bottom: 30px;
   border-bottom: 2px solid $light-gray;
+}
+
+.keyword {
+  position: absolute;
+  background-color: $sharp-accent;
+}
+
+.ace_gutter-cell.ace_breakpoint{
+  border-radius: 20px 0px 0px 20px;
+  background-color: rgba($lighter-accent, 0.5);
+  box-shadow: 0px 0px 1px 1px $light-accent inset;
+}
+
+.ace_selection {
+  background-color: rgba(#B5D5FF, 0.5) !important;
 }
