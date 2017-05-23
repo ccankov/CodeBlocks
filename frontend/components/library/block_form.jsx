@@ -40,6 +40,7 @@ class BlockForm extends React.Component {
     this.removeEditLine = this.removeEditLine.bind(this);
     this.handleKeywordMark = this.handleKeywordMark.bind(this);
     this.removeMarkers = this.removeMarkers.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   storeEditor(editor) {
@@ -174,6 +175,22 @@ class BlockForm extends React.Component {
     this.setState({ concepts });
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    let conceptIds = Object.keys(this.state.concepts);
+    let concepts = conceptIds.map(conceptId => (
+      this.state.concepts[conceptId].name
+    ));
+    let block = {
+      prompt: this.state.prompt,
+      output: this.state.output.length > 0 ? this.state.output : null,
+      codeblock: JSON.stringify(this.state.codeblock),
+      public: false,
+      language_id: this.state.language.id
+    };
+    this.props.createBlock(block, concepts);
+  }
+
   render() {
     let languageOptions = this.props.languages.map(language => (
       <option
@@ -184,7 +201,7 @@ class BlockForm extends React.Component {
       </option>
     ));
     return (
-      <form className="col block-form">
+      <form className="col block-form" onSubmit={ this.handleSubmit }>
         <h2 className="heading">Create a Block</h2>
         <section className="row input-container">
           <label className="floating-label">
