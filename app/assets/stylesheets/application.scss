@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_self
+ *= require font-mfizz
  */
 
  // CSS Variables
@@ -34,4 +35,4 @@
 @import "font-awesome";
 
 // Font Mfizz icons
-@import "font-mfizz/font-mfizz.css";
+// @import "font-mfizz/font-mfizz.css";

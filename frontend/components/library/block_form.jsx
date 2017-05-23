@@ -1,5 +1,10 @@
 import React from 'react';
 import { WithContext as ReactTags } from 'react-tag-input';
+import brace from 'brace';
+import AceEditor from 'react-ace';
+
+import 'brace/theme/xcode';
+import '../../util/selected_languages';
 
 const _nullBlock = {
   prompt: '',
@@ -103,10 +108,23 @@ class BlockForm extends React.Component {
             placeholder="Objective"
             onChange={ this.handleUpdate('prompt') }></input>
         </section>
-        <section className="row input-container">
+        <section className="col input-container">
           <label className="floating-label">
             Step 4: Copy and mark up your code block
           </label>
+          <p>Identify key logic lines by clicking the gutter.
+            Select keywords and use the button to mark them for studying.</p>
+          <AceEditor
+            mode={ this.state.language.name.length > 0
+                    ? this.state.language.name : 'text' }
+            theme="xcode"
+            name="block"
+            fontSize={16}
+            highlightActiveLine={true}
+            focus={false}
+            style={{ width: "100%", height: "30vh" }}
+            editorProps={{$blockScrolling: true}}
+            />
         </section>
         <section className="row input-container">
           <label className="floating-label">

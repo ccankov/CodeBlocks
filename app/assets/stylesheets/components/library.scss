@@ -22,9 +22,14 @@
     border: 2px solid $gray;
     min-height: 100px;
     position: relative;
-    padding: 0px 20px;
+    padding: 20px;
     margin: 20px;
     justify-content: flex-start;
+    box-sizing: border-box;
+
+    p {
+      padding-bottom: 10px;
+    }
   }
 
   .floating-label {
@@ -34,6 +39,11 @@
     left: 10px;
     padding: 0px 10px;
     font-size: 16px;
+  }
+
+  #block {
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -46,20 +56,35 @@
 .tag-suggestions {
   position: absolute;
   border: 1px solid $gray;
-  padding: 5px;
   top: 50px;
   background-color: $lightest-gray;
+
+  li {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  mark {
+    text-decoration: underline;
+    font-weight: bold;
+    background-color: transparent;
+  }
 }
 
 .tag-suggestion-active {
-  background-color: $lighter-gray;
-  width: 100%;
+  background-color: $light-gray;
 }
 
 .tags-input {
   position: relative;
   width: 100%;
   justify-content: flex-start;
+  background-color: $lightest-gray;
+
+  input {
+    margin: 0;
+  }
 }
 
 .tag-remove {
