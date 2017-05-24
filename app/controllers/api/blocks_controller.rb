@@ -16,6 +16,7 @@ class Api::BlocksController < ApplicationController
     begin
       Block.transaction do
         @block.process_and_save
+        debugger
         process_concepts(params[:concepts]) if params[:concepts]
       end
       render :show

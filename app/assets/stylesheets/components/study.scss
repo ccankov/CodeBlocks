@@ -304,6 +304,7 @@
     }
 
     input {
+      margin: 0;
       background-color: $white;
     }
   }
@@ -330,8 +331,8 @@
 
 .editable {
   background-color: $white;
-  border: 9.5px solid $lighter-accent;
-  border-width: 1px 9.5px 1px 9.5px;
+  border: 4.75px solid $lighter-accent;
+  border-width: 1px 4.75px 1px 4.75px;
   position: absolute;
   box-sizing: border-box;
 }
@@ -379,16 +380,16 @@
   margin: 0;
   box-sizing: border-box;
   margin-left: 5px;
-  border: 9.5px solid $sharp-accent;
-  border-width: 1px 9.5px 1px 9.5px;
+  border: 4.75px solid $sharp-accent;
+  border-width: 1px 4.75px 1px 4.75px;
 }
 
 .output-input {
   margin: 0;
   box-sizing: border-box;
   margin-left: 5px;
-  border: 9.5px solid $lighter-accent;
-  border-width: 1px 9.5px 1px 9.5px;
+  border: 4.75px solid $lighter-accent;
+  border-width: 1px 4.75px 1px 4.75px;
 }
 
 .output-input:disabled {

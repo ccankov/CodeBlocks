@@ -153,6 +153,10 @@ class BlockForm extends React.Component {
           name: this.props.languageObj[langId].name
         }});
       });
+    } else if (property === 'public') {
+      return (e => {
+        this.setState({ public: e.target.checked });
+      });
     } else {
       return (e => {
         this.setState({ [property]: e.target.value});
@@ -179,13 +183,13 @@ class BlockForm extends React.Component {
     e.preventDefault();
     let conceptIds = Object.keys(this.state.concepts);
     let concepts = conceptIds.map(conceptId => (
-      this.state.concepts[conceptId].name
+      this.state.concepts[conceptId].text
     ));
     let block = {
       prompt: this.state.prompt,
       output: this.state.output.length > 0 ? this.state.output : null,
       codeblock: JSON.stringify(this.state.codeblock),
-      public: false,
+      public: this.state.public,
       language_id: this.state.language.id
     };
     this.props.createBlock(block, concepts);
@@ -276,6 +280,20 @@ class BlockForm extends React.Component {
             value={ this.state.output }
             placeholder="Output"
             onChange={ this.handleUpdate('output') }></input>
+        </section>
+        <section className="row input-container align-center">
+          <label className="floating-label">
+            Step 6: (Optional) Make your new block public to allow others to study it
+          </label>
+          <p className="switch-label">Private</p>
+          <label className="switch">
+            <input
+              type="checkbox"
+              value={this.state.public}
+              onChange={this.handleUpdate('public')}></input>
+            <div className="slider round"></div>
+          </label>
+          <p className="switch-label">Public</p>
         </section>
         <button className="create-block">Create Block</button>
       </form>

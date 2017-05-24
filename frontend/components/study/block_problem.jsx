@@ -13,7 +13,8 @@ class BlockProblem extends React.Component {
       editor: null,
       markerIds: [],
       html: <div></div>,
-      code: ''
+      code: '',
+      ranges: []
     };
 
     this.processProps = this.processProps.bind(this);
@@ -39,7 +40,22 @@ class BlockProblem extends React.Component {
   }
 
   handleCodeChange(code) {
-    this.setState({ code }, () => this.state.editor.updateSelectionMarkers());
+    let currentRange = this.state.editor.getSelection().getRange();
+    this.state.ranges.forEach(range => {
+      if (range.containsRange(currentRange)) {
+        let colDiff = range.end.column - range.start.column;
+        if ((
+          range.start.row + 1 === range.end.row &&
+          this.state.editor.getSession().getLine(range.start.row).length < 1
+        )) {
+          this.state.editor.insert(" ");
+          return;
+        }
+      }
+    });
+    this.setState({ code }, () => {
+      this.state.editor.updateSelectionMarkers();
+    });
   }
 
   removeMarkers() {
@@ -109,14 +125,15 @@ class BlockProblem extends React.Component {
     editor.setOption("dragEnabled", false);
     let markerIds = [];
     let ranges = [];
+    let editRanges = [];
     if (levelKeyword !== 'all') {
       block.codeblock[levelKeyword + 'Ranges'].forEach(range => {
         let newRange = new Range(range[0], range[1], range[2], range[3]);
-        let markerId = session.addMarker(newRange, "uneditable", "read", false);
         markerIds.push(markerId);
         newRange.start  = session.doc.createAnchor(newRange.start);
         newRange.end    = session.doc.createAnchor(newRange.end);
-          newRange.end.$insertRight = true;
+        newRange.end.$insertRight = true;
+        let markerId = session.addMarker(newRange, "uneditable", "read", false);
         ranges.push(newRange);
       });
       if (levelKeyword === 'keyword') {
@@ -126,6 +143,7 @@ class BlockProblem extends React.Component {
           newRange.end    = session.doc.createAnchor(newRange.end);
           let markerId = session.addMarker(newRange, "editable", "wr", false);
           markerIds.push(markerId);
+          editRanges.push(newRange);
         });
       } else {
         block.codeblock.editLines.forEach(lineNum => {
@@ -134,6 +152,7 @@ class BlockProblem extends React.Component {
           newRange.end    = session.doc.createAnchor(newRange.end);
           let markerId = session.addMarker(newRange, "editline", "wr", false);
           markerIds.push(markerId);
+          editRanges.push(newRange);
         });
       }
     } else {
@@ -156,13 +175,22 @@ class BlockProblem extends React.Component {
               safeEdit = false;
             }
           });
+          editRanges.forEach(range => {
+            let currentRange = selectedRange.clone();
+            if (currentRange.intersects(range)) {
+              let colDiff = range.end.column - range.start.column;
+              if (colDiff < 3 && range.start.row === range.end.row && keyCode === 8) {
+                safeEdit = false;
+              }
+            }
+          });
 
           if (!safeEdit) {
             return {command:"null", passEvent:false};
           }
         }
     });
-    this.setState({ markerIds });
+    this.setState({ markerIds, ranges: editRanges });
   }
 
   render() {
