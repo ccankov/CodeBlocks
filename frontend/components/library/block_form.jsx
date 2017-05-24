@@ -1,5 +1,6 @@
 import React from 'react';
 import { WithContext as ReactTags } from 'react-tag-input';
+import { withRouter } from 'react-router-dom';
 import brace from 'brace';
 import AceEditor from 'react-ace';
 
@@ -192,7 +193,9 @@ class BlockForm extends React.Component {
       public: this.state.public,
       language_id: this.state.language.id
     };
-    this.props.createBlock(block, concepts);
+    this.props.createBlock(block, concepts).then(
+      () => this.props.history.push('/library')
+    );
   }
 
   render() {
@@ -301,4 +304,4 @@ class BlockForm extends React.Component {
   }
 }
 
-export default BlockForm;
+export default withRouter(BlockForm);

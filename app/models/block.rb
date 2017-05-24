@@ -51,7 +51,7 @@ class Block < ApplicationRecord
       row = range[0]
       start_col = range[1]
       end_col = range[3]
-      (start_col..end_col).each do |idx|
+      (start_col...end_col).each do |idx|
         keyword_lines[row][idx] = ' '
       end
     end
