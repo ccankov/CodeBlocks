@@ -8,9 +8,6 @@ import { fetchConcepts }   from './actions/concept_actions';
 import { fetchUserblocks } from './actions/block_actions';
 import { fetchBlocks }     from './actions/block_actions';
 
-import * as BlockActions from './actions/block_actions';
-window.BlockActions = BlockActions;
-
 document.addEventListener('DOMContentLoaded', () => {
   let store;
   if (window.currentUser) {

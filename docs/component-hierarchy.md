@@ -44,11 +44,8 @@
        + DeckForm
     * DeckDetailsContainer
        + DeckDetails
- - BlockView
-    * BlockFormContainer
-       + BlockForm
-    * BlockDetailsContainer
-       + BlockDetails
+ - BlockFormContainer
+    * BlockForm
 
 ## Routes
 

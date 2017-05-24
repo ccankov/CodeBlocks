@@ -33,7 +33,15 @@ class Navbar extends React.Component {
 
   render() {
     let email = '';
-    if (this.props.currentUser) { email = this.props.currentUser.email; }
+    let libaryLink = '';
+    if (this.props.currentUser) {
+      email = this.props.currentUser.email;
+      libaryLink = (
+        <li>
+          <Link to={'/library'} >My Library</Link>
+        </li>
+      );
+    }
     return (
       <nav className="navbar">
         <menu className="row">
@@ -44,12 +52,17 @@ class Navbar extends React.Component {
             </p>
           </Link>
           <ul className="row">
+            { libaryLink }
             <li>
-              <a href="https://www.linkedin.com/in/cvetomir-chris-cankov/">
+              <a target="_blank"
+                href="https://www.linkedin.com/in/cvetomir-chris-cankov/">
                 About
               </a>
             </li>
-            <li><a href="mailto:cankov.chris@gmail.com">Contact</a></li>
+            <li>
+              <a target="_blank"
+                href="mailto:cankov.chris@gmail.com">Contact</a>
+            </li>
           </ul>
         </menu>
         <menu>

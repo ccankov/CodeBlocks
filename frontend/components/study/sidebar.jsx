@@ -79,7 +79,7 @@ class Sidebar extends React.Component {
               <i className="fa fa-home" aria-hidden="true"></i>
             </button>
           </Link>
-          <p><strong>Studying:</strong> My Collection</p>
+          <p><strong>Studying:</strong> My Library</p>
         </section>
         <section className="sidebar-main">
           <section className="col sidebar-info">

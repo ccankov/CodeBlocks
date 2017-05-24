@@ -286,7 +286,8 @@ class BlockForm extends React.Component {
         </section>
         <section className="row input-container align-center">
           <label className="floating-label">
-            Step 6: (Optional) Make your new block public to allow others to study it
+            Step 6: (Optional) Make your new block public to allow others
+            to study it
           </label>
           <p className="switch-label">Private</p>
           <label className="switch">
