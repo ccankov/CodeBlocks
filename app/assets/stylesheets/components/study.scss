@@ -304,8 +304,7 @@
     }
 
     input {
-      background-color: "#f7f7f5";
-      opacity: 0.7;
+      background-color: $white;
     }
   }
 }
@@ -324,9 +323,28 @@
   flex: 1;
 }
 
-.editable {
+.uneditable {
   background-color: $lighter-gray;
-  opacity: 1;
+  position: absolute;
+}
+
+.editable {
+  background-color: $white;
+  border: 9.5px solid $lighter-accent;
+  border-width: 1px 9.5px 1px 9.5px;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.sol-ranges {
+  background-color: $white;
+  border: 1px solid $sharp-accent;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.editline {
+  background-color: $white;
   position: absolute;
 }
 
@@ -349,13 +367,34 @@
   font-weight: bold;
 
   input {
-    margin: 0;
     height: 100%;
     padding: 0;
     padding-left: 10px;
     font-family: $code;
     font-weight: normal;
   }
+}
+
+.solution-output {
+  margin: 0;
+  box-sizing: border-box;
+  margin-left: 5px;
+  border: 9.5px solid $sharp-accent;
+  border-width: 1px 9.5px 1px 9.5px;
+}
+
+.output-input {
+  margin: 0;
+  box-sizing: border-box;
+  margin-left: 5px;
+  border: 9.5px solid $lighter-accent;
+  border-width: 1px 9.5px 1px 9.5px;
+}
+
+.output-input:disabled {
+  margin: 0;
+  border: 0;
+  background-color: $white;
 }
 
 @media (max-width: 1000px) {

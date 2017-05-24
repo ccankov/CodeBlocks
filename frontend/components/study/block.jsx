@@ -27,7 +27,9 @@ class Block extends React.Component {
           level < this.state.currentBlock.max_level) { level++; }
         break;
         case -1:
-        if (level > 0) { level--; }
+        if (level > 0) {
+          level--;
+        }
         break;
       }
     }

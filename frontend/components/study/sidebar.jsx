@@ -46,6 +46,9 @@ class Sidebar extends React.Component {
         case undefined:
           newState.unanswered++;
           break;
+        case "Unanswered":
+          newState.unanswered++;
+          break;
         case "Novice":
           newState.novice++;
           break;

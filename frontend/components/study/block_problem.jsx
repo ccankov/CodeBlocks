@@ -12,73 +12,19 @@ class BlockProblem extends React.Component {
     this.state = {
       editor: null,
       markerIds: [],
-      html: <div></div>
+      html: <div></div>,
+      code: ''
     };
 
     this.processProps = this.processProps.bind(this);
     this.editorLoad = this.editorLoad.bind(this);
     this.setupEditor = this.setupEditor.bind(this);
     this.removeMarkers = this.removeMarkers.bind(this);
-  }
-
-  removeMarkers(editor, block, levelKeyword) {
-    let session = editor.getSession();
-    this.state.markerIds.forEach(markerId => session.removeMarker(markerId));
-    this.setupEditor(editor, block, levelKeyword);
+    this.handleCodeChange = this.handleCodeChange.bind(this);
   }
 
   componentDidMount() {
     this.processProps(this.props);
-  }
-
-  processProps(props) {
-    let block = props.block;
-    let levels = [];
-    if (block.output) { levels.push('all'); }
-    if (block.codeblock.keywordLines) { levels.push('keyword'); }
-    if (block.codeblock.logicLines) { levels.push('logic'); }
-    let level = block.level ? block.level: 0;
-    if (block.max_level && block.level === block.max_level) { level--; }
-    let levelKeyword = levels[level];
-    let language = block.language.name;
-    let codeblock = block.codeblock[levelKeyword + 'Lines'].join('\n');
-    let output = '';
-    if (block.output) {
-      output = (
-        <section className="row output-row">
-          <p className="output-label">
-            OUTPUT
-          </p>
-          <p className="output">
-            >
-            <input defaultValue={ block.output }></input>
-          </p>
-        </section>
-      );
-    }
-    this.setState({
-      html: (
-        <section className="col code-pane">
-          <AceEditor
-            mode={ block ? language : "text" }
-            theme="xcode"
-            name="block"
-            fontSize={16}
-            highlightActiveLine={false}
-            focus={true}
-            onLoad={this.editorLoad}
-            style={{ width: "100%" }}
-            value={ codeblock }
-            editorProps={{$blockScrolling: true}}
-            />
-        { output }
-        </section>
-      )
-    },() => {
-      if (this.state.editor) {
-        this.removeMarkers(this.state.editor, block, levelKeyword);
-      }
-    });
   }
 
   componentWillReceiveProps(newProps) {
@@ -88,12 +34,75 @@ class BlockProblem extends React.Component {
   }
 
   editorLoad(editor) {
+    editor.getSession().setUseSoftTabs(false);
     this.setState({ editor });
   }
 
-  setupEditor(editor, block, levelKeyword) {
+  handleCodeChange(code) {
+    this.setState({ code }, () => this.state.editor.updateSelectionMarkers());
+  }
+
+  removeMarkers() {
+    let session = this.state.editor.getSession();
+    this.state.markerIds.forEach(markerId => session.removeMarker(markerId));
+    this.setupEditor();
+  }
+
+  processProps(props) {
+    let { block, levelKeyword } = props;
+    let language = block.language.name;
+    let code = block.codeblock[levelKeyword + 'Lines'].join('\n');
+    this.setState({ code }, () => {
+      let output = '';
+      if (block.output) {
+        let outputInput = levelKeyword === 'all'
+          ? <input defaultValue='' className="output-input"></input>
+          : <input
+        value={ block.output }
+        className="output-input"
+        disabled></input>;
+        output = (
+          <section className="row output-row">
+            <p className="output-label">
+              OUTPUT
+            </p>
+            <p className="output">
+              >
+              { outputInput }
+            </p>
+          </section>
+        );
+      }
+      this.setState({
+        html: (
+          <section className="col code-pane">
+            <AceEditor
+              mode={ block ? language : "text" }
+              theme="xcode"
+              name="block"
+              fontSize={16}
+              highlightActiveLine={false}
+              focus={true}
+              onLoad={this.editorLoad}
+              onChange={this.handleCodeChange}
+              style={{ width: "100%", backgroundColor: "#f2f2f2" }}
+              value={ code }
+              editorProps={{$blockScrolling: true}}
+              />
+            { output }
+          </section>
+        )
+      },() => {
+        this.removeMarkers();
+      });
+    });
+  }
+
+  setupEditor() {
     let ace = require('brace');
     let Range = ace.acequire('ace/range').Range;
+    let editor = this.state.editor;
+    let { block, levelKeyword } = this.props;
     let session = editor.getSession();
     editor.setReadOnly(false);
     editor.$blockScrolling = Infinity;
@@ -103,17 +112,34 @@ class BlockProblem extends React.Component {
     if (levelKeyword !== 'all') {
       block.codeblock[levelKeyword + 'Ranges'].forEach(range => {
         let newRange = new Range(range[0], range[1], range[2], range[3]);
-        let markerId = session.addMarker(newRange, "editable", "noedit", false);
+        let markerId = session.addMarker(newRange, "uneditable", "read", false);
         markerIds.push(markerId);
         newRange.start  = session.doc.createAnchor(newRange.start);
         newRange.end    = session.doc.createAnchor(newRange.end);
-        newRange.end.$insertRight = true;
+          newRange.end.$insertRight = true;
         ranges.push(newRange);
       });
+      if (levelKeyword === 'keyword') {
+        block.codeblock.editRanges.forEach(range => {
+          let newRange = new Range(range[0], range[1], range[2], range[3]);
+          newRange.start  = session.doc.createAnchor(newRange.start);
+          newRange.end    = session.doc.createAnchor(newRange.end);
+          let markerId = session.addMarker(newRange, "editable", "wr", false);
+          markerIds.push(markerId);
+        });
+      } else {
+        block.codeblock.editLines.forEach(lineNum => {
+          let newRange = new Range(lineNum, 0, lineNum + 1, 0);
+          newRange.start  = session.doc.createAnchor(newRange.start);
+          newRange.end    = session.doc.createAnchor(newRange.end);
+          let markerId = session.addMarker(newRange, "editline", "wr", false);
+          markerIds.push(markerId);
+        });
+      }
     } else {
       editor.setReadOnly(true);
       let newRange = new Range(0, 0, 100, 0);
-      let markerId = session.addMarker(newRange, "editable", "noedit", false);
+      let markerId = session.addMarker(newRange, "uneditable", "read", false);
       markerIds.push(markerId);
     }
 
