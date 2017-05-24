@@ -17,11 +17,11 @@ adequate seed data and sufficient CSS styling:
 
 - [X] Hosting on Heroku
 - [X] New account creation, login, and guest/demo login
-- [ ] Concepts & Languages
-- [ ] Study Blocks
-- [ ] Create/Delete Blocks
+- [X] Concepts & Languages
+- [X] Study Blocks
+- [X] Create/Delete Blocks
 - [ ] Form Decks
-- [ ] Difficulty Levels
+- [X] Difficulty Levels
 - [ ] Production README
 
 ## Design Docs
