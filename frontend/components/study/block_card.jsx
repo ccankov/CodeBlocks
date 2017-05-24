@@ -2,7 +2,7 @@ import React from 'react';
 
 import BlockMain from './block_main';
 
-const BlockCard = ({ block, showSolution }) => {
+const BlockCard = ({ block, showSolution, showProblem }) => {
   let language = block ? block.language.name : '';
   let conceptLis = block ? block.concepts.map((concept, idx) => (
     <div className="label bw" key={ idx }>{ concept }</div>
@@ -41,6 +41,7 @@ const BlockCard = ({ block, showSolution }) => {
       <BlockMain
         block={ block }
         showSolution={ showSolution }
+        showProblem={ showProblem }
       />
     </article>
   );
