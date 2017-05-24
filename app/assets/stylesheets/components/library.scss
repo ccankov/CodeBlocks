@@ -142,6 +142,7 @@
 
 .tag-suggestions {
   position: absolute;
+  z-index: 2;
   border: 1px solid $gray;
   top: 50px;
   background-color: $lightest-gray;
