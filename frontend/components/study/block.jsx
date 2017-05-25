@@ -84,7 +84,8 @@ class Block extends React.Component {
     let card = this.state.currentBlock ? (
       <BlockCard
         block={this.state.currentBlock}
-        showSolution={this.state.showSolution} />
+        showSolution={this.state.showSolution}
+        showProblem={true} />
     ) : '';
     return (
       <section className="col study-main">

@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from 'react-slick';
+import { withRouter } from 'react-router-dom';
 
 import BlockCard from '../study/block_card';
 
@@ -12,11 +12,29 @@ class DeckView extends React.Component {
     };
 
     this.handleCreateBlock = this.handleCreateBlock.bind(this);
+    this.handleStudy = this.handleStudy.bind(this);
+    this.handleNextCard = this.handleNextCard.bind(this);
   }
 
   handleCreateBlock(e) {
     e.preventDefault();
     this.props.history.push('/library/blocks/new');
+  }
+
+  handleStudy(e) {
+    e.preventDefault();
+    this.props.history.push('/study');
+  }
+
+  handleNextCard(increment) {
+    return (e => {
+      let newIndex = this.state.blockIdx + increment;
+      if (newIndex < 0) { newIndex += this.props.blocks.length; }
+      if (newIndex >= this.props.blocks.length) {
+        newIndex -= this.props.blocks.length;
+      }
+      this.setState({ blockIdx: newIndex });
+    });
   }
 
   render() {
@@ -45,22 +63,24 @@ class DeckView extends React.Component {
           <article className="deck-stats">
 
           </article>
-          <article className="row card-nav align-center">
+          <article className="row card-nav align-center"
+            onClick={ this.handleNextCard(-1) }>
             <i className="fa fa-chevron-left" aria-hidden="true"></i>
           </article>
           <article className="deck-card">
             { blockCard }
           </article>
-          <article className="row card-nav align-center">
+          <article className="row card-nav align-center"
+            onClick={ this.handleNextCard(1) }>
             <i className="fa fa-chevron-right" aria-hidden="true"></i>
           </article>
         </section>
         <nav className="row deck-buttons">
-          <button>Study</button>
+          <button onClick={this.handleStudy}>Study</button>
         </nav>
       </section>
     );
   }
 }
 
-export default DeckView;
+export default withRouter(DeckView);

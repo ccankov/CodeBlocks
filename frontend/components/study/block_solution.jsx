@@ -63,7 +63,7 @@ class BlockSolution extends React.Component {
 
   render() {
     let { block, levelKeyword } = this.props;
-    let output = (
+    let output = block.output ? (
       <section className="row output-row">
         <p className="output-label">
           OUTPUT
@@ -76,7 +76,7 @@ class BlockSolution extends React.Component {
             disabled></input>
         </p>
       </section>
-    );
+    ) : '';
     return (
       <section className="col code-pane solution">
         <AceEditor

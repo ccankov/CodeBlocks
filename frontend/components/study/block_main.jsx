@@ -17,14 +17,18 @@ class BlockMain extends React.Component {
 
   render() {
     let levelKeyword = this.determineLevel();
-    let { block, showSolution } = this.props;
+    let { block, showSolution, showProblem } = this.props;
     if (!block) { return <section className="col card-main"></section>; }
     let prompt = block.prompt;
-    if (levelKeyword === 'all') {
+    if (levelKeyword === 'all' && showProblem) {
       prompt = 'What is the output of the following code block?';
     }
+    let problem = showProblem
+      ? <BlockProblem block={ block } showSolution={ showSolution }
+          levelKeyword={ levelKeyword } />
+      : '';
     let solution = showSolution
-      ? <BlockSolution block={ block } levelKeyword={ levelKeyword } /> 
+      ? <BlockSolution block={ block } levelKeyword={ levelKeyword } />
       : '';
     return (
       <section className="col card-main">
@@ -32,10 +36,7 @@ class BlockMain extends React.Component {
           { prompt }
         </h1>
         <section className="row code-container">
-          <BlockProblem
-            block={ block }
-            showSolution={ showSolution }
-            levelKeyword={ levelKeyword } />
+          { problem }
           { solution }
         </section>
       </section>

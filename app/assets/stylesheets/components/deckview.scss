@@ -39,7 +39,7 @@
     box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.25);
 
     header {
-      padding: 5px 20px;
+      padding: 5px 15px;
 
       i {
         font-size: 1.4em;
@@ -64,13 +64,17 @@
 
     .output {
       display: flex;
+      align-items: center;
     }
   }
 
   .card-main {
     h1 {
       font-size: 1em;
+    }
 
+    input {
+      font-size: 0.7em;
     }
   }
 }
