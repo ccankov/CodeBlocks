@@ -1,19 +1,21 @@
 .home-view {
   align-items: stretch;
-  height: calc(100vh - 60px);
+  height: 100%;
+  max-height: 100vh;
+  padding-top: 60px;
+  box-sizing: border-box;
   background-color: $white;
   justify-content: space-between;
   min-width: 850px;
   flex-wrap: nowrap;
+  overflow-y: hidden;
 }
 
 .library-main {
   box-sizing: border-box;
-  width: 80vw;
   min-width: 600px;
-  min-height: 840px;
+  flex: 0.8;
   overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .language-select {

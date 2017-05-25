@@ -87,6 +87,10 @@ class DeckView extends React.Component {
             Add Block
           </button>
         </header>
+        <p className="deck-text">
+          Explore your entire collection of blocks, including their programming
+          languages and concepts.
+        </p>
         <section className="row deck-info">
           <article className="info-panel">
             <h3>Languages</h3>
@@ -122,8 +126,28 @@ class DeckView extends React.Component {
           </article>
         </section>
         <section className="row deck-preview">
-          <article className="deck-stats">
-
+          <article className="col deck-stats">
+            <section className="row sidebar-gauge">
+              <svg viewBox="0 0 100 100" width="80%">
+                <circle r="45%" cx="50" cy="50" fill="none"
+                  stroke="#6E3667"
+                ></circle>
+                <circle r="45%" cx="50" cy="50" fill="none"
+                  className="stroke" style={{
+                  strokeDasharray: (this.state.mastery * 2.83) + " 300"
+                  }}
+                ></circle>
+              </svg>
+              <div className="col floating-text">
+              <p className="big-text">{ this.state.mastery }
+                <strong>%</strong>
+              </p>
+              <p className="small-text">Mastered</p>
+              </div>
+            </section>
+            <section className="library-stats">
+              <h3>{ `${this.props.blocks.length} Total Cards` }</h3>
+            </section>
           </article>
           <article className="deck-card-preview">
             <article className="row deck-card">
