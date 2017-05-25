@@ -2,13 +2,14 @@
   padding: 30px 40px;
   box-sizing: border-box;
   width: 80vw;
-  min-width: 550px;
+  min-width: 650px;
   height: 100%;
   align-items: stretch;
 
   .deck-header {
     border-bottom: 2px solid $light-gray;
     justify-content: space-between;
+    min-width: 650px;
     padding: 0 20px;
     padding-bottom: 10px;
 
@@ -32,6 +33,7 @@
 
   .deck-preview {
     height: 45vh;
+    min-width: 650px;
   }
 
   .study-block {
@@ -83,7 +85,7 @@
   flex: 0.8;
   height: 100%;
   margin-right: 10px;
-  border: 1px solid $gray;
+  border: 1px solid $light-gray;
 }
 
 .deck-card {
@@ -111,6 +113,29 @@
 
 .deck-info {
   height: 25vh;
+  min-width: 650px;
+
+  .info-panel {
+    flex: 1;
+    height: 80%;
+    margin-right: 30px;
+    border: 1px solid $light-gray;
+    border-radius: 5px;
+    position: relative;
+
+    h3 {
+      position: absolute;
+      top: -22px;
+      color: $dark-gray;
+      padding: 10px 10px;
+      margin: 0 10px;
+      background-color: $white;
+    }
+  }
+
+  .info-panel:last-child {
+    margin: 0;
+  }
 }
 
 .deck-buttons {

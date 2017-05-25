@@ -58,7 +58,14 @@ class DeckView extends React.Component {
             Add Block
           </button>
         </header>
-        <section className="deck-info"></section>
+        <section className="row deck-info">
+          <article className="info-panel">
+            <h3>Languages</h3>
+          </article>
+          <article className="info-panel">
+            <h3>Concepts</h3>
+          </article>
+        </section>
         <section className="row deck-preview">
           <article className="deck-stats">
 
