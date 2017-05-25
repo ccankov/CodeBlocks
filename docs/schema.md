@@ -65,5 +65,5 @@ concept_id    | integer   | not null, foreign key (references concepts), indexed
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-deck_id     | integer   | not null, foreign key (references decks), indexed, unique [language_id]
+deck_id     | integer   | not null, foreign key (references decks), indexed [language_id]
 language_id | integer   | not null, foreign key (references languages), indexed

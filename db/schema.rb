@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525175721) do
+ActiveRecord::Schema.define(version: 20170525181247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,24 @@ ActiveRecord::Schema.define(version: 20170525175721) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_concepts_on_name", unique: true, using: :btree
+  end
+
+  create_table "deck_concepts", force: :cascade do |t|
+    t.integer  "deck_id",    null: false
+    t.integer  "concept_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deck_id", "concept_id"], name: "index_deck_concepts_on_deck_id_and_concept_id", unique: true, using: :btree
+    t.index ["deck_id"], name: "index_deck_concepts_on_deck_id", using: :btree
+  end
+
+  create_table "deck_languages", force: :cascade do |t|
+    t.integer  "deck_id",     null: false
+    t.integer  "language_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["deck_id", "language_id"], name: "index_deck_languages_on_deck_id_and_language_id", unique: true, using: :btree
+    t.index ["deck_id"], name: "index_deck_languages_on_deck_id", using: :btree
   end
 
   create_table "decks", force: :cascade do |t|
