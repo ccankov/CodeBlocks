@@ -2,7 +2,9 @@ const emptyAggregate = {
   totalBlocks: 0,
   mastery: 0,
   languages: [],
+  languageTags: [],
   concepts: [],
+  conceptTags: [],
   blockIds: [],
   unanswered: 0,
   novice: 0,
@@ -49,6 +51,17 @@ const incrementMasteryCounts = (block, aggregate) => {
   }
 };
 
+const setupTags = (aggregate) => {
+  aggregate.languageTags = aggregate.languages.map((lang, idx) => ({
+    id: idx + 1,
+    text: lang
+  }));
+  aggregate.conceptTags = aggregate.concepts.map((concept, idx) => ({
+    id: idx + 1,
+    text: concept
+  }));
+};
+
 const aggregateBlocks = (blocks) => {
   blocks = convertObjToArr(blocks);
   let aggregate = Object.assign({}, emptyAggregate);
@@ -58,6 +71,7 @@ const aggregateBlocks = (blocks) => {
     countConceptsAndLanguages(block, aggregate);
     incrementMasteryCounts(block, aggregate);
   });
+  setupTags(aggregate);
   aggregate.mastery = Math.floor(
     (aggregate.master / aggregate.totalBlocks) * 100
   );

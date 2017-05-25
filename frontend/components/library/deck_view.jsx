@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { WithContext as ReactTags } from 'react-tag-input';
 
 import aggregateBlocks from '../../util/aggregate_blocks';
 import BlockCard from '../study/block_card';
@@ -13,7 +14,9 @@ class DeckView extends React.Component {
       totalBlocks: 0,
       mastery: 0,
       languages: [],
+      languageTags: [],
       concepts: [],
+      conceptTags: [],
       blockIds: [],
       unanswered: 0,
       novice: 0,
@@ -24,10 +27,16 @@ class DeckView extends React.Component {
     this.handleCreateBlock = this.handleCreateBlock.bind(this);
     this.handleStudy = this.handleStudy.bind(this);
     this.handleNextCard = this.handleNextCard.bind(this);
+    this.handleDeleteCard = this.handleDeleteCard.bind(this);
   }
 
   componentDidMount() {
     let newState = aggregateBlocks(this.props.blocks);
+    this.setState(newState);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let newState = aggregateBlocks(nextProps.blocks);
     this.setState(newState);
   }
 
@@ -50,6 +59,11 @@ class DeckView extends React.Component {
       }
       this.setState({ blockIdx: newIndex });
     });
+  }
+
+  handleDeleteCard() {
+    let block = this.props.blocks[this.state.blockIdx];
+    this.props.deleteBlock(block.id);
   }
 
   render() {
@@ -76,25 +90,61 @@ class DeckView extends React.Component {
         <section className="row deck-info">
           <article className="info-panel">
             <h3>Languages</h3>
+            <ReactTags tags={ this.state.languageTags }
+              readOnly={true}
+              suggestions={ this.props.languages }
+              handleDelete={ this.handleLanguageDelete }
+              handleAddition={ this.handleLanguageAdd }
+              classNames={{
+                tags: 'label-tags',
+                suggestions: 'tag-suggestions',
+                selected: 'row tags-input',
+                tag: 'label bw',
+                remove: 'tag-remove',
+                activeSuggestion: 'tag-suggestion-active'
+              }} />
           </article>
           <article className="info-panel">
             <h3>Concepts</h3>
+            <ReactTags tags={ this.state.conceptTags }
+              readOnly={true}
+              suggestions={ this.props.concepts }
+              handleDelete={ this.handleConceptDelete }
+              handleAddition={ this.handleConceptAdd }
+              classNames={{
+                tags: 'label-tags',
+                suggestions: 'tag-suggestions',
+                selected: 'row tags-input',
+                tag: 'label bw',
+                remove: 'tag-remove',
+                activeSuggestion: 'tag-suggestion-active'
+              }} />
           </article>
         </section>
         <section className="row deck-preview">
           <article className="deck-stats">
 
           </article>
-          <article className="row card-nav align-center"
-            onClick={ this.handleNextCard(-1) }>
-            <i className="fa fa-chevron-left" aria-hidden="true"></i>
-          </article>
-          <article className="deck-card">
-            { blockCard }
-          </article>
-          <article className="row card-nav align-center"
-            onClick={ this.handleNextCard(1) }>
-            <i className="fa fa-chevron-right" aria-hidden="true"></i>
+          <article className="deck-card-preview">
+            <article className="row deck-card">
+              <article className="row card-nav align-center"
+                onClick={ this.handleNextCard(-1) }>
+                <i className="fa fa-chevron-left" aria-hidden="true"></i>
+              </article>
+              { blockCard }
+              <article className="row card-nav align-center"
+                onClick={ this.handleNextCard(1) }>
+                <i className="fa fa-chevron-right" aria-hidden="true"></i>
+              </article>
+            </article>
+            <article className="row deck-card-info">
+              <p>
+                { `${this.state.blockIdx + 1} of ${this.props.blocks.length}` }
+              </p>
+              <button className="error" onClick={ this.handleDeleteCard }>
+                Delete Card
+              </button>
+            </article>
           </article>
         </section>
         <nav className="row deck-buttons">
