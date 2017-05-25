@@ -51,7 +51,7 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 name        | string    | not null
-mastery     | integer   | not null
+public      | boolean   | not null, default false
 author_id   | integer   | not null, foreign key (references users), indexed
 
 ## deck_concepts
@@ -67,10 +67,3 @@ column name | data type | details
 id          | integer   | not null, primary key
 deck_id     | integer   | not null, foreign key (references decks), indexed, unique [language_id]
 language_id | integer   | not null, foreign key (references languages), indexed
-
-## deck_blocks
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-deck_id     | integer   | not null, foreign key (references decks), indexed, unique [block_id]
-block_id     | integer   | not null, foreign key (references blocks), indexed
