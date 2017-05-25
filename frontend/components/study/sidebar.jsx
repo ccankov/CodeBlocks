@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import aggregateBlocks from '../../util/aggregate_blocks';
+
 const _nullState = {
   totalBlocks: 0,
   mastery: 0,
   languages: [],
   concepts: [],
+  blockIds: [],
   unanswered: 0,
   novice: 0,
   intermediate: 0,
@@ -20,48 +23,13 @@ class Sidebar extends React.Component {
   }
 
   componentDidMount() {
-    let newState = this.processBlocks(this.props.blocks);
+    let newState = aggregateBlocks(this.props.blocks);
     this.setState(newState);
   }
 
   componentWillReceiveProps(nextProps) {
-    let newState = this.processBlocks(nextProps.blocks);
+    let newState = aggregateBlocks(nextProps.blocks);
     this.setState(newState);
-  }
-
-  processBlocks(blocks) {
-    let newState = Object.assign({}, _nullState);
-    for (var blockId in blocks) {
-      let block = blocks[blockId];
-      newState.totalBlocks++;
-      if (!newState.languages.includes(block.language.name)) {
-        newState.languages.push(block.language.name);
-      }
-      block.concepts.forEach(concept => {
-        if (!newState.concepts.includes(concept)) {
-          newState.concepts.push(concept);
-        }
-      });
-      switch (block.mastery) {
-        case undefined:
-          newState.unanswered++;
-          break;
-        case "Unanswered":
-          newState.unanswered++;
-          break;
-        case "Novice":
-          newState.novice++;
-          break;
-        case "Intermediate":
-          newState.intermediate++;
-          break;
-        case "Master":
-          newState.master++;
-          break;
-      }
-    }
-    newState.mastery = Math.floor((newState.master / newState.totalBlocks)*100);
-    return newState;
   }
 
   render() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
+import aggregateBlocks from '../../util/aggregate_blocks';
 import BlockCard from '../study/block_card';
 
 class DeckView extends React.Component {
@@ -8,12 +9,26 @@ class DeckView extends React.Component {
     super(props);
 
     this.state = {
-      blockIdx: 0
+      blockIdx: 0,
+      totalBlocks: 0,
+      mastery: 0,
+      languages: [],
+      concepts: [],
+      blockIds: [],
+      unanswered: 0,
+      novice: 0,
+      intermediate: 0,
+      master: 0
     };
 
     this.handleCreateBlock = this.handleCreateBlock.bind(this);
     this.handleStudy = this.handleStudy.bind(this);
     this.handleNextCard = this.handleNextCard.bind(this);
+  }
+
+  componentDidMount() {
+    let newState = aggregateBlocks(this.props.blocks);
+    this.setState(newState);
   }
 
   handleCreateBlock(e) {

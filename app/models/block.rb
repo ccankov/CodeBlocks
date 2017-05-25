@@ -29,6 +29,7 @@ class Block < ApplicationRecord
 
   def process_and_save
     self.codeblock = setup_levels(self.codeblock)
+    self.output = nil if output && output.length == 0
     self.save!
   end
 
