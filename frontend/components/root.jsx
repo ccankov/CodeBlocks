@@ -4,7 +4,7 @@ import { HashRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 import Home from './home/home';
 import Library from './library/library';
-import Study from './study/study';
+import StudyContainer from './study/study_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import ModalContainer from './modals/modal_container';
 
@@ -20,7 +20,7 @@ const Root = ({ store }) => (
             <ProtectedRoute path="/library" component={ Library } />
           </Route>
           <Route exact path="/study">
-            <ProtectedRoute path="/study" component={ Study } />
+            <ProtectedRoute path="/study" component={ StudyContainer } />
           </Route>
           <Route render={() => <Redirect to="/" />} />
         </Switch>

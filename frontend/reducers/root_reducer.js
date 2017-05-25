@@ -6,6 +6,7 @@ import sessionReducer from './session_reducer';
 import conceptReducer from './concept_reducer';
 import languageReducer from './language_reducer';
 import blockReducer from './block_reducer';
+import deckReducer from './deck_reducer';
 
 const rootReducer = combineReducers({
   errors: errorReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   session: sessionReducer,
   concepts: conceptReducer,
   languages: languageReducer,
-  blocks: blockReducer
+  blocks: blockReducer,
+  decks: deckReducer
 });
 
 export default rootReducer;

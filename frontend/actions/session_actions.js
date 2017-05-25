@@ -2,6 +2,7 @@ import * as APIUtil        from '../util/session_api_util';
 import { receiveErrors }   from './error_actions';
 import { fetchUserblocks } from './block_actions';
 import { fetchBlocks }     from './block_actions';
+import { fetchDecks }      from './deck_actions';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 
@@ -22,6 +23,7 @@ export const login = user => dispatch => {
     () => {
       dispatch(fetchUserblocks());
       dispatch(fetchBlocks(thisUser.id));
+      dispatch(fetchDecks());
     }
   );
 };

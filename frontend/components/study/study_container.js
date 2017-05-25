@@ -1,11 +1,13 @@
 import { connect } from 'react-redux';
 
-import { blockQueues } from '../../selectors/block_selectors';
+import Study from './study';
+import { libraryBlocks } from '../../selectors/block_selectors';
 import { createUserblock } from '../../actions/block_actions';
-import Block from './block';
+import blockQueues from '../../util/queue_blocks';
 
 const mapStateToProps = (state) => ({
-  blocks: blockQueues(state)
+  blocks: libraryBlocks(state),
+  blockQueues: blockQueues(libraryBlocks(state))
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -15,4 +17,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Block);
+)(Study);

@@ -23,7 +23,7 @@ class Api::DecksController < ApplicationController
 
   def destroy
     @deck = Deck.find_by(id: params[:id])
-    if @deck
+    if @deck && @deck.author_id == current_user.id
       @deck.destroy
       render json: @deck
     else

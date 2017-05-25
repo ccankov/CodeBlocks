@@ -1,12 +1,12 @@
 import React from 'react';
 
-import SidebarContainer from './sidebar_container';
-import BlockContainer from './block_container';
+import Sidebar from './sidebar';
+import Block from './block';
 
-const Study = (props) => (
+const Study = ({ blocks, blockQueues, createUserblock }) => (
   <main className="col study">
-    <SidebarContainer />
-    <BlockContainer />
+    <Sidebar blocks={ blocks } />
+    <Block blocks={ blockQueues } createUserblock={ createUserblock } />
   </main>
 );
 
