@@ -54,7 +54,6 @@ class DeckView extends React.Component {
   }
 
   componentWillMount() {
-    debugger;
     if (this.props.deck && this.props.deck.public) {
       this.fetchData(this.props);
     }
@@ -63,7 +62,6 @@ class DeckView extends React.Component {
   fetchData(props) {
     this.setState({ loading: true }, () => {
       let { concepts, languages } = props.deck;
-      debugger;
       props.fetchBlocks(null, languages, concepts).then(() => {
         this.setState({ loading: false });
       });
@@ -87,7 +85,6 @@ class DeckView extends React.Component {
   componentWillReceiveProps(nextProps) {
     let newDeck = nextProps.deck;
     let oldDeck = this.props.deck;
-    debugger;
     if (
       (newDeck && newDeck.public && !oldDeck) ||
       (newDeck && newDeck.public && oldDeck && newDeck.id !== oldDeck.id)
