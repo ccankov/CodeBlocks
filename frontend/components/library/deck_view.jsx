@@ -54,6 +54,7 @@ class DeckView extends React.Component {
   }
 
   componentWillMount() {
+    debugger;
     if (this.props.deck && this.props.deck.public) {
       this.fetchData(this.props);
     }
@@ -62,6 +63,7 @@ class DeckView extends React.Component {
   fetchData(props) {
     this.setState({ loading: true }, () => {
       let { concepts, languages } = props.deck;
+      debugger;
       props.fetchBlocks(null, languages, concepts).then(() => {
         this.setState({ loading: false });
       });
@@ -83,6 +85,15 @@ class DeckView extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    let newDeck = nextProps.deck;
+    let oldDeck = this.props.deck;
+    debugger;
+    if (
+      (newDeck && newDeck.public && !oldDeck) ||
+      (newDeck && newDeck.public && oldDeck && newDeck.id !== oldDeck.id)
+    ) {
+      this.fetchData(nextProps);
+    }
     this.determineStateFromProps(nextProps);
   }
 
@@ -131,10 +142,11 @@ class DeckView extends React.Component {
         showSolution={true}
         showProblem={false} />
     );
+    let deckName = this.props.deck ? this.props.deck.name : 'My Library';
     return (
       <section className="col deck-view-main">
         <header className="row deck-header">
-          <h2 className="heading deck-heading">My Library</h2>
+          <h2 className="heading deck-heading">{ deckName }</h2>
           <button onClick={this.handleCreateBlock} className="row">
             <i className="fa fa-plus" aria-hidden="true"></i>
             Add Block
