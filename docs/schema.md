@@ -13,7 +13,7 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 prompt      | string    | not null
-codeblock   | text      |
+codeblock   | JSON      |
 output      | text      |
 public      | boolean   | not null
 author_id   | integer   | not null, foreign key (references users), indexed

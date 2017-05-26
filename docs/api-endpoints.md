@@ -11,6 +11,7 @@
 ### Users
 
 - `POST /api/users`
+  - New user signup
 
 ### UserBlocks
 
@@ -22,7 +23,9 @@
 ### Session
 
 - `POST /api/session`
+  - User login action
 - `DELETE /api/session`
+  - User logout action
 
 ### Blocks
 
@@ -56,10 +59,6 @@
   - returns all decks made by the current user
 - `POST /api/decks`
   - handles creating associated deck_concepts and deck_languages
-- `GET /api/decks/:id`
-  - gets a single deck along with its blocks
-- `PATCH /api/decks/:id`
-  - handles modifying associated deck_concepts and deck_languages
 - `DELETE /api/decks/:id`
   - deletes orphaned deck_concepts and deck_languages
 
