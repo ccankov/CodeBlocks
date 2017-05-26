@@ -49,6 +49,27 @@
     width: 80%;
     margin: 0;
     text-align: center;
+    height: 40px;
+    border-radius: 3px;
+    padding: 5px 10px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    position: relative;
+
+    button {
+      position: absolute;
+      right: 5px;
+      top: 1px;
+      padding: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $button-error;
+    }
+
+    button:hover {
+      box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.2);
+    }
   }
 
   .deck-button:hover {

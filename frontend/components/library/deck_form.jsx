@@ -31,6 +31,7 @@ class DeckForm extends React.Component {
     super(props);
 
     this.state = {
+      headingClass: '',
       blocks: [],
       deckName: '',
       personalDeck: true,
@@ -152,17 +153,21 @@ class DeckForm extends React.Component {
 
   handleSave(e) {
     e.preventDefault();
-    this.props.createDeck({
+    if (this.state.deckName.length > 0) {
+      this.props.createDeck({
         name: this.state.deckName,
         public: !this.state.personalDeck
       },
       this.state.curLangTags.map(tag => tag.text),
       this.state.curConceptTags.map(tag => tag.text)
-    ).then(() => {
-      this.props.fetchConcepts().then(() => (
-        this.props.history.push('/library')
+      ).then(() => {
+        this.props.fetchConcepts().then(() => (
+          this.props.history.push('/library')
       ));
     });
+    } else {
+      this.setState({ headingClass: 'input-error' });
+    }
   }
 
   render() {
@@ -183,6 +188,7 @@ class DeckForm extends React.Component {
           <h2 className="heading deck-heading">
             <input
               placeholder="Deck Name"
+              className={this.state.headingClass}
               value={this.state.deckName}
               onChange={this.handleUpdateDeckName}></input>
           </h2>
