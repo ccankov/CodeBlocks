@@ -23,7 +23,7 @@ class DeckSidebar extends React.Component {
   navigateDeck(id) {
     return (e => {
       e.preventDefault();
-      this.props.history.push(`/library?deck_id=${id}`);
+      this.props.history.push(`/library/${id}`);
     });
   }
 

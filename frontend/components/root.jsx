@@ -19,6 +19,9 @@ const Root = ({ store }) => (
           <Route path="/library">
             <ProtectedRoute path="/library" component={ Library } />
           </Route>
+          <Route exact path="/study/:deckId">
+            <ProtectedRoute path="/study/:deckId" component={ StudyContainer } />
+          </Route>
           <Route exact path="/study">
             <ProtectedRoute path="/study" component={ StudyContainer } />
           </Route>

@@ -15,6 +15,9 @@ const Main = (props) => (
         exact path="/library/:deckId"
         component={ DeckViewContainer } />
       <Route
+        exact path="/library"
+        component={ DeckViewContainer } />
+      <Route
         exact path="/library/blocks/new"
         component={ BlockFormContainer } />
       <Route render={() => <Redirect to="/" />} />

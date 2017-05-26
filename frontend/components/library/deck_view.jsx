@@ -28,6 +28,14 @@ class DeckView extends React.Component {
   constructor(props) {
     super(props);
 
+    if (props.deck && props.deck.public) {
+      let { concepts, languages } = props.deck;
+      concepts = concepts.map(concept => props.conceptsByName[concept].id);
+      languages = languages.map(language => props.languagesByName[language].id);
+
+      props.fetchBlocks(null, languages, concepts);
+    }
+
     this.state = {
       blockIdx: 0,
       totalBlocks: 0,
@@ -56,6 +64,15 @@ class DeckView extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     let newState = aggregateBlocks(nextProps.blocks);
+    if (nextProps.deck && nextProps.deck.public && (!this.props.deck || !this.props.deck.public)) {
+      let { concepts, languages } = nextProps.deck;
+      concepts = concepts.map(concept => nextProps.conceptsByName[concept].id);
+      languages = languages.map(
+        language => nextProps.languagesByName[language].id
+      );
+
+      nextProps.fetchBlocks(null, languages, concepts);
+    }
     this.setState(newState);
   }
 
@@ -66,7 +83,11 @@ class DeckView extends React.Component {
 
   handleStudy(e) {
     e.preventDefault();
-    this.props.history.push('/study');
+    if (this.props.match.path === '/library') {
+      this.props.history.push('/study');
+    } else {
+      this.props.history.push(`/study/${this.props.match.params.deckId}`);
+    }
   }
 
   handleNextCard(increment) {
