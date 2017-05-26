@@ -16,6 +16,7 @@ const _nullBlock = {
     id: 0,
     name: 'javascript'
   },
+  language_id: 1,
   codeblock: {
     allLines: [],
     editLines: [],
@@ -61,7 +62,11 @@ class DeckForm extends React.Component {
   }
 
   componentDidMount() {
-    let newState = aggregateBlocks(this.state.blocks);
+    let newState = aggregateBlocks(
+      this.state.blocks,
+      this.props.state.concepts,
+      this.props.state.languages
+    );
     this.setState(newState);
   }
 
@@ -69,12 +74,16 @@ class DeckForm extends React.Component {
     this.setState({
       blocks: filteredBlocks(
         nextProps.state,
-        this.state.curLangTags.map(lang => lang.text),
-        this.state.curConceptTags.map(conc => conc.text),
+        this.state.curLangTags.map(tag => this.props.languagesByName[tag.text].id),
+        this.state.curConceptTags.map(tag => this.props.conceptsByName[tag.text].id),
         this.state.personalDeck
       )
     }, () => {
-      let newState = aggregateBlocks(this.state.blocks);
+      let newState = aggregateBlocks(
+        this.state.blocks,
+        this.props.state.concepts,
+        this.props.state.languages
+      );
       newState.blockIdx = 0;
       this.setState(newState);
     });
@@ -149,8 +158,11 @@ class DeckForm extends React.Component {
       },
       this.state.curLangTags.map(tag => tag.text),
       this.state.curConceptTags.map(tag => tag.text)
-    );
-    this.props.history.push('/library');
+    ).then(() => {
+      this.props.fetchConcepts().then(() => (
+        this.props.history.push('/library')
+      ));
+    });
   }
 
   render() {
@@ -160,6 +172,8 @@ class DeckForm extends React.Component {
       <BlockCard
         key={block.id}
         block={block}
+        languages={this.props.state.languages}
+        concepts={this.props.state.concepts}
         showSolution={true}
         showProblem={false} />
     );
@@ -193,7 +207,7 @@ class DeckForm extends React.Component {
             <h3>Languages</h3>
             <ReactTags tags={ this.state.curLangTags }
               placeholder="Add language"
-              suggestions={ this.props.languages }
+              suggestions={ this.props.languages.map(lang => lang.name) }
               handleDelete={ this.handleLanguageDelete }
               handleAddition={ this.handleLanguageAdd }
               classNames={{
@@ -209,7 +223,7 @@ class DeckForm extends React.Component {
             <h3>Concepts</h3>
             <ReactTags tags={ this.state.curConceptTags }
               placeholder="Add concept"
-              suggestions={ this.props.concepts }
+              suggestions={ this.props.concepts.map(conc => conc.name) }
               handleDelete={ this.handleConceptDelete }
               handleAddition={ this.handleConceptAdd }
               classNames={{

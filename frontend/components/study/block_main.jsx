@@ -24,11 +24,11 @@ class BlockMain extends React.Component {
       prompt = 'What is the output of the following code block?';
     }
     let problem = showProblem
-      ? <BlockProblem block={ block } showSolution={ showSolution }
+      ? <BlockProblem {...this.props}
           levelKeyword={ levelKeyword } />
       : '';
     let solution = showSolution
-      ? <BlockSolution block={ block } levelKeyword={ levelKeyword } />
+      ? <BlockSolution {...this.props} levelKeyword={ levelKeyword } />
       : '';
     return (
       <section className="col card-main">

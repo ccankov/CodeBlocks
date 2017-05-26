@@ -2,7 +2,7 @@ class Api::DecksController < ApplicationController
   before_action :logged_in?
 
   def index
-    @decks = Deck.where(author_id: current_user.id)
+    @decks = Deck.includes(:languages, :concepts).where(author_id: current_user.id)
     render :index
   end
 

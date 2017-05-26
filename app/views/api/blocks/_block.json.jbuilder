@@ -1,7 +1,4 @@
-json.extract! block, :id, :codeblock, :output, :prompt, :public, :language
+json.extract! block, :id, :codeblock, :output, :prompt, :public, :language_id, :author_id
 concepts = []
-block.concepts.map { |concept| concepts.push(concept.name) }
+block.concepts.map { |concept| concepts.push(concept.id) }
 json.concepts concepts
-json.author do
-  json.partial! 'api/users/user', user: block.author
-end

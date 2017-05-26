@@ -193,9 +193,11 @@ class BlockForm extends React.Component {
       public: this.state.public,
       language_id: this.state.language.id
     };
-    this.props.createBlock(block, concepts).then(
-      () => this.props.history.push('/library')
-    );
+    this.props.createBlock(block, concepts).then(() => {
+      this.props.fetchConcepts().then(() => {
+        this.props.history.push('/library');
+      });
+    });
   }
 
   render() {
@@ -231,7 +233,7 @@ class BlockForm extends React.Component {
           </label>
           <ReactTags tags={ this.state.concepts }
             placeholder="Add a concept"
-            suggestions={ this.props.concepts }
+            suggestions={ this.props.concepts.map(conc => conc.name) }
             handleDelete={ this.handleConceptDelete }
             handleAddition={ this.handleConceptAdd }
             classNames={{

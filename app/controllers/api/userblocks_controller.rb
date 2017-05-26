@@ -2,7 +2,9 @@ class Api::UserblocksController < ApplicationController
   before_action :logged_in?
 
   def index
-    @userblocks = UserBlock.includes(:block).where(user_id: current_user.id)
+    @userblocks = UserBlock.includes(
+      block: [:language, :concepts]
+    ).where(user_id: current_user.id)
     render :index
   end
 

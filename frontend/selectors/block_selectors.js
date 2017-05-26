@@ -7,7 +7,7 @@ export const libraryBlocks = (state) => {
     let curUserId = state.session.currentUser.id;
     let blockIds = Object.keys(state.blocks);
     let allBlocks = blockIds.map(blockId => state.blocks[blockId]);
-    let libBlocks = allBlocks.filter(block => block.author.id === curUserId);
+    let libBlocks = allBlocks.filter(block => block.author_id === curUserId);
     return libBlocks;
   }
 };
@@ -20,7 +20,7 @@ export const filteredBlocks = (state, langs = [], concepts = [], personal) => {
   let blocks = personal ? libraryBlocks(state) : arrayBlocks(state.blocks);
 
   if (langs.length > 0) {
-    blocks = blocks.filter(block => langs.includes(block.language.name));
+    blocks = blocks.filter(block => langs.includes(block.language_id));
   }
   if (concepts.length > 0) {
     blocks = blocks.filter(block => {

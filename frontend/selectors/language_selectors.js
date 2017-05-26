@@ -1,6 +1,6 @@
 export const allLanguages = (state) => {
   let languageIds = Object.keys(state.languages);
-  return languageIds.map(languageId => state.languages[languageId].name);
+  return languageIds.map(languageId => state.languages[languageId]);
 };
 
 export const languagesByName = (state) => {

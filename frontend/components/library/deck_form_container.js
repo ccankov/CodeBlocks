@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import { fetchBlocks } from '../../actions/block_actions';
 import { createDeck } from '../../actions/deck_actions';
+import { fetchConcepts } from '../../actions/concept_actions';
 import { allConcepts, conceptsByName } from '../../selectors/concept_selectors';
 import { allLanguages, languagesByName }
   from '../../selectors/language_selectors';
@@ -21,7 +22,8 @@ const mapDispatchToProps = (dispatch) => ({
   ),
   createDeck: (deck, languages, concepts) => dispatch(
     createDeck(deck, languages, concepts)
-  )
+  ),
+  fetchConcepts: () => dispatch(fetchConcepts())
 });
 
 export default connect(

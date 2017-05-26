@@ -2,10 +2,11 @@ import React from 'react';
 
 import BlockMain from './block_main';
 
-const BlockCard = ({ block, showSolution, showProblem }) => {
-  let language = block ? block.language.name : '';
+const BlockCard = ({block, showSolution, showProblem, concepts, languages}) => {
+  let props = {block, showSolution, showProblem, concepts, languages};
+  let language = block ? languages[block.language_id].name : '';
   let conceptLis = block ? block.concepts.map((concept, idx) => (
-    <div className="label bw" key={ idx }>{ concept }</div>
+    <div className="label bw" key={ idx }>{ concepts[concept].name }</div>
   )) : [];
   let level = block && block.mastery ? block.mastery : 'Unanswered';
   let lvl = '';
@@ -38,11 +39,7 @@ const BlockCard = ({ block, showSolution, showProblem }) => {
           </h1>
         </div>
       </header>
-      <BlockMain
-        block={ block }
-        showSolution={ showSolution }
-        showProblem={ showProblem }
-      />
+      <BlockMain {...props} />
     </article>
   );
 };

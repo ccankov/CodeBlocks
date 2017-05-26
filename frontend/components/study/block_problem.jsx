@@ -14,7 +14,9 @@ class BlockProblem extends React.Component {
       markerIds: [],
       html: <div></div>,
       code: '',
-      ranges: []
+      ranges: [],
+      output: '',
+      language: 'javascript'
     };
 
     this.processProps = this.processProps.bind(this);
@@ -22,6 +24,7 @@ class BlockProblem extends React.Component {
     this.setupEditor = this.setupEditor.bind(this);
     this.removeMarkers = this.removeMarkers.bind(this);
     this.handleCodeChange = this.handleCodeChange.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
   componentDidMount() {
@@ -30,7 +33,7 @@ class BlockProblem extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.block && !newProps.showSolution) {
-      this.processProps(newProps);
+      this.setState({ output: '' }, () => this.processProps(newProps));
     }
   }
 
@@ -64,53 +67,16 @@ class BlockProblem extends React.Component {
     this.setupEditor();
   }
 
+  handleInput(e) {
+    this.setState({ output: e.target.value });
+  }
+
   processProps(props) {
     let { block, levelKeyword } = props;
-    let language = block.language.name;
+    let language = this.props.languages[block.language_id].name;
     let code = block.codeblock[levelKeyword + 'Lines'].join('\n');
-    this.setState({ code }, () => {
-      let output = '';
-      if (block.output) {
-        let outputInput = levelKeyword === 'all'
-          ? <input defaultValue='' className="output-input"></input>
-          : <input
-        value={ block.output }
-        className="output-input"
-        disabled></input>;
-        output = (
-          <section className="row output-row">
-            <p className="output-label">
-              OUTPUT
-            </p>
-            <p className="output">
-              >
-              { outputInput }
-            </p>
-          </section>
-        );
-      }
-      this.setState({
-        html: (
-          <section className="col code-pane">
-            <AceEditor
-              mode={ block ? language : "text" }
-              theme="xcode"
-              name="block"
-              fontSize={16}
-              highlightActiveLine={false}
-              focus={true}
-              onLoad={this.editorLoad}
-              onChange={this.handleCodeChange}
-              style={{ width: "100%", backgroundColor: "#f2f2f2" }}
-              value={ code }
-              editorProps={{$blockScrolling: true}}
-              />
-            { output }
-          </section>
-        )
-      },() => {
-        this.removeMarkers();
-      });
+    this.setState({ language, code }, () => {
+      this.removeMarkers();
     });
   }
 
@@ -194,7 +160,43 @@ class BlockProblem extends React.Component {
   }
 
   render() {
-    return this.state.html;
+    let block = this.props.block;
+    if (!block) { return <div></div>; }
+    let outputInput = this.props.levelKeyword === 'all'
+      ? <input value={this.state.output}
+               className="output-input"
+               onChange={this.handleInput}></input>
+      : <input
+    value={ block.output ? block.output : '' }
+    onChange={this.handleInput}
+    className="output-input"
+    disabled></input>;
+    return (
+      <section className="col code-pane">
+        <AceEditor
+          mode={ this.state.language }
+          theme="xcode"
+          name="block"
+          fontSize={16}
+          highlightActiveLine={false}
+          focus={true}
+          onLoad={this.editorLoad}
+          onChange={this.handleCodeChange}
+          style={{ width: "100%", backgroundColor: "#f2f2f2" }}
+          value={ this.state.code }
+          editorProps={{$blockScrolling: true}}
+          />
+          <section className="row output-row">
+            <p className="output-label">
+              OUTPUT
+            </p>
+            <p className="output">
+              >
+              { outputInput }
+            </p>
+          </section>
+      </section>
+    );
   }
 }
 

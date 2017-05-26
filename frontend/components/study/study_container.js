@@ -11,28 +11,27 @@ import Study from './study';
 
 const mapStateToProps = (state, ownProps) => {
   let deckId = ownProps.match.params.deckId;
+  let deck = state.decks[deckId];
 
-  if (deckId) {
-    let deck = state.decks[deckId];
-    if (!deck) { ownProps.history.push('/study'); }
+  if (deckId && deck) {
     let { concepts, languages } = deck;
     let publicDeck = deck.public;
+    let blocks = filteredBlocks(state, languages, concepts, !publicDeck);
     return {
-      blocks: filteredBlocks(state, languages, concepts, !publicDeck),
-      blockQueues: blockQueues(
-        filteredBlocks(state, languages, concepts, !publicDeck)
-      ),
-      deck: deck,
-      conceptsByName: conceptsByName(state),
-      languagesByName: languagesByName(state)
+      blocks,
+      blockQueues: blockQueues(blocks),
+      deck,
+      concepts: state.concepts,
+      languages: state.languages
     };
   } else {
+    let blocks = libraryBlocks(state);
     return {
-      blocks: libraryBlocks(state),
-      blockQueues: blockQueues(libraryBlocks(state)),
+      blocks,
+      blockQueues: blockQueues(blocks),
       deck: null,
-      conceptsByName: conceptsByName(state),
-      languagesByName: languagesByName(state)
+      concepts: state.concepts,
+      languages: state.languages
     };
   }
 };

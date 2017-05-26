@@ -3,29 +3,25 @@ import ReactDOM            from 'react-dom';
 
 import Root                from './components/root';
 import configureStore      from './store/store';
-import { fetchLanguages }  from './actions/language_actions';
-import { fetchConcepts }   from './actions/concept_actions';
-import { fetchUserblocks } from './actions/block_actions';
-import { fetchBlocks }     from './actions/block_actions';
-import { fetchDecks }      from './actions/deck_actions';
+import { preloadAssets, preloadUserAssets }  from './util/preload_assets';
+
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
+  var promises = [];
   if (window.currentUser) {
     const preloadedState = { session: { currentUser: window.currentUser } };
     store = configureStore(preloadedState);
-    store.dispatch(fetchUserblocks());
-    store.dispatch(fetchDecks());
-    store.dispatch(fetchBlocks(window.currentUser.id));
+    promises.push.apply(promises, preloadUserAssets(store));
   } else {
     store = configureStore();
   }
-  store.dispatch(fetchLanguages()).then(() => {
-    store.dispatch(fetchConcepts()).then(() => {
-      ReactDOM.render(
-        <Root store={ store } />,
-        document.getElementById('codeblocks')
-      );
-    });
+  promises.push.apply(promises, preloadAssets(store));
+  Promise.all(promises).then(() => {
+    window.currentUser = null;
+    ReactDOM.render(
+      <Root store={ store } />,
+      document.getElementById('codeblocks')
+    );
   });
 });

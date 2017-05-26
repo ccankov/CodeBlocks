@@ -12,6 +12,7 @@ const _nullBlock = {
     id: 0,
     name: ''
   },
+  language_id: 1,
   codeblock: {
     allLines: [],
     editLines: [],
@@ -56,7 +57,7 @@ class Block extends React.Component {
   }
 
   determineStateFromProps(props) {
-    let { unanswered, master, intermediate, novice } = props.blocks;
+    let { unanswered, master, intermediate, novice } = props.blockQueues;
     let totalQueue = unanswered.concat(novice, intermediate, master);
     return {
       currentBlock: totalQueue[0],
@@ -69,7 +70,7 @@ class Block extends React.Component {
   }
 
   render() {
-    let { unanswered, master, intermediate, novice } = this.props.blocks;
+    let { unanswered, master, intermediate, novice } = this.props.blockQueues;
     let totalCards = unanswered.length + master.length +
       intermediate.length + novice.length;
     let revealButton = (
@@ -108,7 +109,9 @@ class Block extends React.Component {
       <BlockCard
         block={block}
         showSolution={this.state.showSolution}
-        showProblem={true} />
+        showProblem={true}
+        concepts={this.props.concepts}
+        languages={this.props.languages} />
     );
     return (
       <section className="col study-main">

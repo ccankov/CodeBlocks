@@ -2,7 +2,7 @@ class Api::ConceptsController < ApplicationController
   before_action :logged_in?, only: [:create, :destroy]
 
   def index
-    @concepts = Concept.joins(:block_concepts).distinct
+    @concepts = Concept.joins(:block_concepts).uniq
     render :index
   end
 

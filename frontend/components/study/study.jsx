@@ -4,38 +4,43 @@ import Sidebar from './sidebar';
 import Block from './block';
 
 class Study extends React.Component {
-  componentDidMount() {
-    if (this.props.deck && this.props.deck.public) {
-      let { concepts, languages } = this.props.deck;
-      concepts = concepts.map(concept => this.props.conceptsByName[concept].id);
-      languages = languages.map(
-        language => this.props.languagesByName[language].id
-      );
+  constructor(props) {
+    super(props);
 
-      this.props.fetchBlocks(null, languages, concepts);
-    }
+    this.state = { loading: false };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.deck && nextProps.deck.public && (!this.props.deck || !this.props.deck.public)) {
-      let { concepts, languages } = nextProps.deck;
-      concepts = concepts.map(concept => nextProps.conceptsByName[concept].id);
-      languages = languages.map(
-        language => nextProps.languagesByName[language].id
-      );
+  fetchData(props) {
+    this.setState({ loading: true }, () => {
+      let { concepts, languages } = props.deck;
+      props.fetchBlocks(null, languages, concepts).then(() => {
+        this.setState({ loading: false });
+      });
+    });
+  }
 
-      nextProps.fetchBlocks(null, languages, concepts);
+  componentWillMount() {
+    if (this.props.deck && this.props.deck.public) {
+      this.fetchData(this.props);
     }
   }
 
   render() {
-    let { blocks, blockQueues, createUserblock } = this.props;
-    return (
-      <main className="col study">
-        <Sidebar blocks={ blocks } />
-        <Block blocks={ blockQueues } createUserblock={ createUserblock } />
-      </main>
-    );
+    if (this.state.loading) {
+      return (
+        <main className="col study">
+          <Sidebar {...this.props} />
+          <section className="col study-main"></section>
+        </main>
+      );
+    } else {
+      return (
+        <main className="col study">
+          <Sidebar {...this.props} />
+          <Block {...this.props} />
+        </main>
+      );
+    }
   }
 }
 

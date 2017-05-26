@@ -10,24 +10,29 @@ import DeckView from './deck_view';
 
 const mapStateToProps = (state, ownProps) => {
   let deckId = ownProps.match.params.deckId;
+  let deck = state.decks[deckId];
 
-  if (deckId) {
-    let deck = state.decks[deckId];
-    if (!deck) { ownProps.history.push('/library'); }
+  if (deckId && deck) {
     let { concepts, languages } = deck;
     let publicDeck = deck.public;
+    let blocks = filteredBlocks(state, languages, concepts, !publicDeck);
     return {
-      blocks: filteredBlocks(state, languages, concepts, !publicDeck),
-      deck: deck,
-      conceptsByName: conceptsByName(state),
-      languagesByName: languagesByName(state)
+      blocks,
+      deck,
+      concepts: allConcepts(state),
+      languages: allLanguages(state),
+      conceptsObj: state.concepts,
+      languagesObj: state.languages
     };
   } else {
+    let blocks = libraryBlocks(state);
     return {
-      blocks: libraryBlocks(state),
+      blocks,
       deck: null,
-      conceptsByName: conceptsByName(state),
-      languagesByName: languagesByName(state)
+      concepts: allConcepts(state),
+      languages: allLanguages(state),
+      conceptsObj: state.concepts,
+      languagesObj: state.languages
     };
   }
 };

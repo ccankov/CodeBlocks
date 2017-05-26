@@ -15,8 +15,8 @@ const emptyAggregate = {
 };
 
 const countConceptsAndLanguages = (block, aggregate) => {
-  if (!aggregate.languages.includes(block.language.name)) {
-    aggregate.languages.push(block.language.name);
+  if (!aggregate.languages.includes(block.language_id)) {
+    aggregate.languages.push(block.language_id);
   }
   block.concepts.forEach(concept => {
     if (!aggregate.concepts.includes(concept)) {
@@ -45,18 +45,18 @@ const incrementMasteryCounts = (block, aggregate) => {
   }
 };
 
-const setupTags = (aggregate) => {
+const setupTags = (aggregate, concepts, languages) => {
   aggregate.languageTags = aggregate.languages.map((lang, idx) => ({
     id: idx + 1,
-    text: lang
+    text: languages[lang].name
   }));
   aggregate.conceptTags = aggregate.concepts.map((concept, idx) => ({
     id: idx + 1,
-    text: concept
+    text: concepts[concept].name
   }));
 };
 
-const aggregateBlocks = (blocks) => {
+const aggregateBlocks = (blocks, concepts, languages) => {
   blocks = arrayBlocks(blocks);
   let aggregate = Object.assign({}, emptyAggregate);
   aggregate.languages = [];
@@ -70,7 +70,9 @@ const aggregateBlocks = (blocks) => {
     countConceptsAndLanguages(block, aggregate);
     incrementMasteryCounts(block, aggregate);
   });
-  setupTags(aggregate);
+  setupTags(aggregate, concepts, languages);
+  aggregate.languages.map(langId => languages[langId].name);
+  aggregate.concepts.map(conceptId => concepts[conceptId].name);
   aggregate.mastery = Math.floor(
     (aggregate.master / aggregate.totalBlocks) * 100
   );

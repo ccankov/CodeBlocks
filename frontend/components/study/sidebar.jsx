@@ -22,24 +22,34 @@ class Sidebar extends React.Component {
     super(props);
 
     this.state = Object.assign({}, _nullState);
+    this.determineStateFromProps = this.determineStateFromProps.bind(this);
+  }
+
+  determineStateFromProps(props) {
+    let { blocks, concepts, languages } = props;
+    let newState = aggregateBlocks(
+      blocks,
+      concepts,
+      languages
+    );
+    this.setState(newState);
   }
 
   componentDidMount() {
-    let newState = aggregateBlocks(this.props.blocks);
-    this.setState(newState);
+    this.determineStateFromProps(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
-    let newState = aggregateBlocks(nextProps.blocks);
-    this.setState(newState);
+    this.determineStateFromProps(nextProps);
   }
 
   render() {
+    let { languages, concepts } = this.props;
     let languageLis = this.state.languages.map((language, idx) => (
-      <div className="label" key={ idx }>{ language }</div>
+      <div className="label" key={ idx }>{ languages[language].name }</div>
     ));
     let conceptLis = this.state.concepts.map((concept, idx) => (
-      <div className="label" key={ idx }>{ concept }</div>
+      <div className="label" key={ idx }>{ concepts[concept].name }</div>
     ));
     return (
       <aside className="col study-sidebar">

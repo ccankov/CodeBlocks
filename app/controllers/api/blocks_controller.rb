@@ -5,7 +5,12 @@ class Api::BlocksController < ApplicationController
     user_id = params[:user_id]
     lang_ids = params[:language_ids] ? params[:language_ids].split(',') : nil
     concept_ids = params[:concept_ids] ? params[:concept_ids].split(',') : nil
-    @blocks = Block.filter(user_id, lang_ids, concept_ids, current_user)
+    @blocks = Block.includes(:language, :concepts).filter(
+      user_id,
+      lang_ids,
+      concept_ids,
+      current_user
+    )
     render :index
   end
 
@@ -25,7 +30,7 @@ class Api::BlocksController < ApplicationController
   end
 
   def show
-    @block = Block.includes(:author, :language, :concepts)
+    @block = Block.includes(:language, :concepts)
                   .find_by(id: params[:id])
     if @block
       render :show

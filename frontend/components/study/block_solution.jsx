@@ -62,7 +62,7 @@ class BlockSolution extends React.Component {
   }
 
   render() {
-    let { block, levelKeyword } = this.props;
+    let { block, levelKeyword, languages, concepts } = this.props;
     let output = block.output ? (
       <section className="row output-row">
         <p className="output-label">
@@ -80,7 +80,7 @@ class BlockSolution extends React.Component {
     return (
       <section className="col code-pane solution">
         <AceEditor
-          mode={ block.language.name }
+          mode={ languages[block.language_id].name }
           theme="xcode"
           name="solution"
           fontSize={16}

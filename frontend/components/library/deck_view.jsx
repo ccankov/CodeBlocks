@@ -15,6 +15,7 @@ const _nullBlock = {
     id: 0,
     name: 'javascript'
   },
+  language_id: 1,
   codeblock: {
     allLines: [],
     editLines: [],
@@ -28,15 +29,8 @@ class DeckView extends React.Component {
   constructor(props) {
     super(props);
 
-    if (props.deck && props.deck.public) {
-      let { concepts, languages } = props.deck;
-      concepts = concepts.map(concept => props.conceptsByName[concept].id);
-      languages = languages.map(language => props.languagesByName[language].id);
-
-      props.fetchBlocks(null, languages, concepts);
-    }
-
     this.state = {
+      loading: false,
       blockIdx: 0,
       totalBlocks: 0,
       mastery: 0,
@@ -55,25 +49,41 @@ class DeckView extends React.Component {
     this.handleStudy = this.handleStudy.bind(this);
     this.handleNextCard = this.handleNextCard.bind(this);
     this.handleDeleteCard = this.handleDeleteCard.bind(this);
+    this.fetchData = this.fetchData.bind(this);
+    this.determineStateFromProps = this.determineStateFromProps.bind(this);
+  }
+
+  componentWillMount() {
+    if (this.props.deck && this.props.deck.public) {
+      this.fetchData(this.props);
+    }
+  }
+
+  fetchData(props) {
+    this.setState({ loading: true }, () => {
+      let { concepts, languages } = props.deck;
+      props.fetchBlocks(null, languages, concepts).then(() => {
+        this.setState({ loading: false });
+      });
+    });
+  }
+
+  determineStateFromProps(props) {
+    let { blocks, conceptsObj, languagesObj } = props;
+    let newState = aggregateBlocks(
+      blocks,
+      conceptsObj,
+      languagesObj
+    );
+    this.setState(newState);
   }
 
   componentDidMount() {
-    let newState = aggregateBlocks(this.props.blocks);
-    this.setState(newState);
+    this.determineStateFromProps(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
-    let newState = aggregateBlocks(nextProps.blocks);
-    if (nextProps.deck && nextProps.deck.public && (!this.props.deck || !this.props.deck.public)) {
-      let { concepts, languages } = nextProps.deck;
-      concepts = concepts.map(concept => nextProps.conceptsByName[concept].id);
-      languages = languages.map(
-        language => nextProps.languagesByName[language].id
-      );
-
-      nextProps.fetchBlocks(null, languages, concepts);
-    }
-    this.setState(newState);
+    this.determineStateFromProps(nextProps);
   }
 
   handleCreateBlock(e) {
@@ -109,13 +119,15 @@ class DeckView extends React.Component {
 
   render() {
     let block = this.props.blocks[this.state.blockIdx];
-    if (!block) {
+    if (this.state.loading || !block) {
       block = _nullBlock;
     }
     let blockCard = (
       <BlockCard
         key={block.id}
         block={block}
+        concepts={this.props.conceptsObj}
+        languages={this.props.languagesObj}
         showSolution={true}
         showProblem={false} />
     );
@@ -137,9 +149,7 @@ class DeckView extends React.Component {
             <h3>Languages</h3>
             <ReactTags tags={ this.state.languageTags }
               readOnly={true}
-              suggestions={ this.props.languages }
-              handleDelete={ this.handleLanguageDelete }
-              handleAddition={ this.handleLanguageAdd }
+              suggestions={ this.props.languages.map(lang => lang.name) }
               classNames={{
                 tags: 'label-tags',
                 suggestions: 'tag-suggestions',
@@ -153,9 +163,7 @@ class DeckView extends React.Component {
             <h3>Concepts</h3>
             <ReactTags tags={ this.state.conceptTags }
               readOnly={true}
-              suggestions={ this.props.concepts }
-              handleDelete={ this.handleConceptDelete }
-              handleAddition={ this.handleConceptAdd }
+              suggestions={ this.props.concepts.map(conc => conc.name) }
               classNames={{
                 tags: 'label-tags',
                 suggestions: 'tag-suggestions',
