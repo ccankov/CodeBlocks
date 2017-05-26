@@ -20,10 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = configureStore();
   }
-  store.dispatch(fetchLanguages());
-  store.dispatch(fetchConcepts());
-  ReactDOM.render(
-    <Root store={ store } />,
-    document.getElementById('codeblocks')
-  );
+  store.dispatch(fetchLanguages()).then(() => {
+    store.dispatch(fetchConcepts()).then(() => {
+      ReactDOM.render(
+        <Root store={ store } />,
+        document.getElementById('codeblocks')
+      );
+    });
+  });
 });
