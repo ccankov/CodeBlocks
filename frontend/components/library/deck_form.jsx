@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { WithContext as ReactTags } from 'react-tag-input';
 
 import aggregateBlocks from '../../util/aggregate_blocks';
+import { filteredBlocks } from '../../selectors/block_selectors';
 import BlockCard from '../study/block_card';
 
 const _nullBlock = {
@@ -24,18 +25,23 @@ const _nullBlock = {
   }
 };
 
-class DeckView extends React.Component {
+class DeckForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      blocks: [],
+      deckName: '',
+      personalDeck: true,
       blockIdx: 0,
       totalBlocks: 0,
       mastery: 0,
       languages: [],
       languageTags: [],
+      curLangTags: [],
       concepts: [],
       conceptTags: [],
+      curConceptTags: [],
       blockIds: [],
       unanswered: 0,
       novice: 0,
@@ -43,54 +49,113 @@ class DeckView extends React.Component {
       master: 0
     };
 
-    this.handleCreateBlock = this.handleCreateBlock.bind(this);
-    this.handleStudy = this.handleStudy.bind(this);
     this.handleNextCard = this.handleNextCard.bind(this);
-    this.handleDeleteCard = this.handleDeleteCard.bind(this);
+    this.handleUpdateDeckName = this.handleUpdateDeckName.bind(this);
+    this.handleLanguageDelete = this.handleLanguageDelete.bind(this);
+    this.handleLanguageAdd = this.handleLanguageAdd.bind(this);
+    this.handleConceptDelete = this.handleConceptDelete.bind(this);
+    this.handleConceptAdd = this.handleConceptAdd.bind(this);
+    this.updateBlocks = this.updateBlocks.bind(this);
+    this.handlePublicCards = this.handlePublicCards.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   componentDidMount() {
-    let newState = aggregateBlocks(this.props.blocks);
+    let newState = aggregateBlocks(this.state.blocks);
     this.setState(newState);
   }
 
   componentWillReceiveProps(nextProps) {
-    let newState = aggregateBlocks(nextProps.blocks);
-    this.setState(newState);
+    this.setState({
+      blocks: filteredBlocks(
+        nextProps.state,
+        this.state.curLangTags.map(lang => lang.text),
+        this.state.curConceptTags.map(conc => conc.text),
+        this.state.personalDeck
+      )
+    }, () => {
+      let newState = aggregateBlocks(this.state.blocks);
+      newState.blockIdx = 0;
+      this.setState(newState);
+    });
   }
 
-  handleCreateBlock(e) {
-    e.preventDefault();
-    this.props.history.push('/library/blocks/new');
+  updateBlocks() {
+    let userId = this.state.personalDeck
+      ? this.props.state.session.currentUser.id : null;
+    let langs = this.state.curLangTags.length > 0
+      ? this.state.curLangTags.map(lang => this.props.languagesByName[lang.text].id) : null;
+    let concepts = this.state.curConceptTags.length > 0
+    ? this.state.curConceptTags.map(concept => this.props.conceptsByName[concept.text].id) : null;
+    this.props.fetchBlocks(userId, langs, concepts);
   }
 
-  handleStudy(e) {
-    e.preventDefault();
-    this.props.history.push('/study');
+  handleLanguageDelete (idx) {
+    let curLangTags = this.state.curLangTags;
+    curLangTags.splice(idx,1);
+    this.setState({ curLangTags }, () => this.updateBlocks());
+  }
+
+  handleLanguageAdd (language) {
+    let curLangTags = this.state.curLangTags;
+    curLangTags.push({
+        id: curLangTags.length + 1,
+        text: language
+    });
+    this.setState({ curLangTags }, () => this.updateBlocks());
+  }
+
+  handleConceptDelete (idx) {
+    let curConceptTags = this.state.curConceptTags;
+    curConceptTags.splice(idx,1);
+    this.setState({ curConceptTags }, () => this.updateBlocks());
+  }
+
+  handleConceptAdd (concept) {
+    let curConceptTags = this.state.curConceptTags;
+    curConceptTags.push({
+        id: curConceptTags.length + 1,
+        text: concept
+    });
+    this.setState({ curConceptTags }, () => this.updateBlocks());
   }
 
   handleNextCard(increment) {
     return (e => {
       let newIndex = this.state.blockIdx + increment;
-      if (newIndex < 0) { newIndex += this.props.blocks.length; }
-      if (newIndex >= this.props.blocks.length) {
-        newIndex -= this.props.blocks.length;
+      if (newIndex < 0) { newIndex += this.state.blocks.length; }
+      if (newIndex >= this.state.blocks.length) {
+        newIndex -= this.state.blocks.length;
       }
-      if (this.props.blocks.length === 0) { newIndex = 0; }
+      if (this.state.blocks.length === 0) { newIndex = 0; }
       this.setState({ blockIdx: newIndex });
     });
   }
 
-  handleDeleteCard() {
-    let block = this.props.blocks[this.state.blockIdx];
-    this.props.deleteBlock(block.id);
+  handleUpdateDeckName(e) {
+    this.setState({ deckName: e.target.value });
+  }
+
+  handlePublicCards(e) {
+    this.setState({ personalDeck: !e.target.checked },
+      () => this.updateBlocks());
+  }
+
+  handleSave(e) {
+    e.preventDefault();
+    this.props.createDeck({
+        name: this.state.deckName,
+        public: !this.state.personalDeck
+      },
+      this.state.curLangTags.map(tag => tag.text),
+      this.state.curConceptTags.map(tag => tag.text)
+    );
+    this.props.history.push('/library');
   }
 
   render() {
-    let block = this.props.blocks[this.state.blockIdx];
-    if (!block) {
-      block = _nullBlock;
-    }
+    let block = this.state.blocks[this.state.blockIdx];
+    if (!block) { block = _nullBlock; }
     let blockCard = (
       <BlockCard
         key={block.id}
@@ -101,21 +166,33 @@ class DeckView extends React.Component {
     return (
       <section className="col deck-view-main">
         <header className="row deck-header">
-          <h2 className="heading deck-heading">My Library</h2>
-          <button onClick={this.handleCreateBlock} className="row">
-            <i className="fa fa-plus" aria-hidden="true"></i>
-            Add Block
-          </button>
+          <h2 className="heading deck-heading">
+            <input
+              placeholder="Deck Name"
+              value={this.state.deckName}
+              onChange={this.handleUpdateDeckName}></input>
+          </h2>
+          <div className="row">
+            <p className="switch-label">Personal Cards Only</p>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  value={!this.state.personalDeck}
+                  onChange={this.handlePublicCards}
+                ></input>
+                <div className="slider round"></div>
+              </label>
+            <p className="switch-label">Include Public Cards</p>
+          </div>
         </header>
         <p className="deck-text">
-          Explore your entire collection of blocks, including their programming
-          languages and concepts.
+          Add languages and concepts below to assemble your deck.
         </p>
         <section className="row deck-info">
           <article className="info-panel">
             <h3>Languages</h3>
-            <ReactTags tags={ this.state.languageTags }
-              readOnly={true}
+            <ReactTags tags={ this.state.curLangTags }
+              placeholder="Add language"
               suggestions={ this.props.languages }
               handleDelete={ this.handleLanguageDelete }
               handleAddition={ this.handleLanguageAdd }
@@ -130,8 +207,8 @@ class DeckView extends React.Component {
           </article>
           <article className="info-panel">
             <h3>Concepts</h3>
-            <ReactTags tags={ this.state.conceptTags }
-              readOnly={true}
+            <ReactTags tags={ this.state.curConceptTags }
+              placeholder="Add concept"
               suggestions={ this.props.concepts }
               handleDelete={ this.handleConceptDelete }
               handleAddition={ this.handleConceptAdd }
@@ -167,7 +244,7 @@ class DeckView extends React.Component {
               </div>
             </section>
             <section className="library-stats">
-              <h3>{ `${this.props.blocks.length} Total Cards` }</h3>
+              <h3>{ `${this.state.blocks.length} Total Cards` }</h3>
             </section>
           </article>
           <article className="deck-card-preview">
@@ -184,20 +261,17 @@ class DeckView extends React.Component {
             </article>
             <article className="row deck-card-info">
               <p>
-                { `${this.state.blockIdx + 1} of ${this.props.blocks.length}` }
+                { `${this.state.blockIdx + 1} of ${this.state.blocks.length}` }
               </p>
-              <button className="error" onClick={ this.handleDeleteCard }>
-                Delete Card
-              </button>
             </article>
           </article>
         </section>
         <nav className="row deck-buttons">
-          <button onClick={this.handleStudy}>Study</button>
+          <button onClick={this.handleSave}>Save</button>
         </nav>
       </section>
     );
   }
 }
 
-export default withRouter(DeckView);
+export default withRouter(DeckForm);

@@ -27,8 +27,8 @@ export const fetchDecks = () => dispatch => (
   )
 );
 
-export const createDeck = (deck, concepts) => dispatch => (
-  APIDeckUtil.createDeck(deck, concepts).then(
+export const createDeck = (deck, languages, concepts) => dispatch => (
+  APIDeckUtil.createDeck(deck, languages, concepts).then(
     newDeck => dispatch(receiveDeck(newDeck)),
     errors => dispatch(receiveErrors(errors.responseJSON))
   )

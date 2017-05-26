@@ -2,6 +2,25 @@ import React from 'react';
 
 import BlockCard from './block_card';
 
+const _nullBlock = {
+  prompt: "There are no blocks.",
+  output: null,
+  author: {},
+  concepts: [],
+  id: 0,
+  language: {
+    id: 0,
+    name: ''
+  },
+  codeblock: {
+    allLines: [],
+    editLines: [],
+    editRanges: [],
+    keywordLines: [],
+    keywordRanges: []
+  }
+};
+
 class Block extends React.Component {
   constructor(props) {
     super(props);
@@ -81,12 +100,16 @@ class Block extends React.Component {
         </div>
       </menu>
     );
-    let card = this.state.currentBlock ? (
+    let block = this.state.currentBlock;
+    if (!block) {
+      block = _nullBlock;
+    }
+    let card = (
       <BlockCard
-        block={this.state.currentBlock}
+        block={block}
         showSolution={this.state.showSolution}
         showProblem={true} />
-    ) : '';
+    );
     return (
       <section className="col study-main">
         <div className="study-text right">

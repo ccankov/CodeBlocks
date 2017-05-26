@@ -79,7 +79,9 @@ class Sidebar extends React.Component {
               ></circle>
             </svg>
             <div className="col floating-text">
-            <p className="big-text">{ this.state.mastery }<strong>%</strong></p>
+            <p className="big-text">
+              { isNaN(this.state.mastery) ? 0 : this.state.mastery }
+              <strong>%</strong></p>
             <p className="small-text">Mastered</p>
             </div>
           </section>

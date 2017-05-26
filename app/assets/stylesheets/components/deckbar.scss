@@ -6,12 +6,28 @@
   box-sizing: border-box;
 
   p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: $lightest-gray;
     padding: 20px 15px;
     border-right: 3px solid $light-gray;
-    border-bottom: 1px solid $light-gray;
+    border-bottom: 1px solid $gray;
     font-size: 18px;
     font-weight: bold;
+
+    button {
+      margin: 0;
+      background-color: $sharp-accent;
+
+      i {
+        padding-right: 10px;
+      }
+    }
+
+    button:hover {
+      background-color: $button-good;
+    }
   }
 }
 
@@ -19,4 +35,23 @@
   background-color: $lightest-gray;
   flex: 1;
   border-right: 3px solid $light-gray;
+  padding-top: 10px;
+
+  .deck-navigation {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .deck-button {
+    background-color: $light-gray;
+    color: $black;
+    width: 80%;
+    margin: 0;
+    text-align: center;
+  }
+
+  .deck-button:hover {
+    background-color: $gray;
+  }
 }

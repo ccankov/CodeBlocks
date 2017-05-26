@@ -35,6 +35,14 @@
     border: 0;
     margin: 0;
     padding: 0;
+    width: 50%;
+
+    input {
+      font-size: 32px;
+      font-weight: normal;
+      text-align: left;
+      margin: 0;
+    }
   }
 
   .deck-preview {
@@ -105,6 +113,8 @@
     height: auto;
 
     .floating-text {
+      min-height: 100px;
+
       .big-text {
         color: $light-accent;
 
@@ -150,9 +160,9 @@
 
 .deck-card-info {
   height: 12%;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 0 100px;
+  padding: 0;
 
   p {
     padding: 5px 10px;

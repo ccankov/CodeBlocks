@@ -1,3 +1,5 @@
+import arrayBlocks from './array_blocks';
+
 const emptyAggregate = {
   totalBlocks: 0,
   mastery: 0,
@@ -10,14 +12,6 @@ const emptyAggregate = {
   novice: 0,
   intermediate: 0,
   master: 0
-};
-
-const convertObjToArr = (blocks) => {
-  if (!Array.isArray(blocks)) {
-    let blockIds = Object.keys(blocks);
-    blocks = blockIds.map(blockId => blocks[blockId]);
-  }
-  return blocks;
 };
 
 const countConceptsAndLanguages = (block, aggregate) => {
@@ -63,8 +57,13 @@ const setupTags = (aggregate) => {
 };
 
 const aggregateBlocks = (blocks) => {
-  blocks = convertObjToArr(blocks);
+  blocks = arrayBlocks(blocks);
   let aggregate = Object.assign({}, emptyAggregate);
+  aggregate.languages = [];
+  aggregate.concepts = [];
+  aggregate.languageTags = [];
+  aggregate.conceptTags = [];
+  aggregate.blockIds = [];
   blocks.forEach(block => {
     aggregate.totalBlocks++;
     aggregate.blockIds.push(block.id);
