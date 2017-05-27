@@ -3,6 +3,7 @@ import { receiveErrors }   from './error_actions';
 import { fetchUserblocks } from './block_actions';
 import { fetchBlocks }     from './block_actions';
 import { fetchDecks }      from './deck_actions';
+import { receiveDecks }    from './deck_actions';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 
@@ -32,6 +33,8 @@ export const logout = () => dispatch => (
   APIUtil.logout().then(
     () => dispatch(receiveCurrentUser()),
     errors => dispatch(receiveErrors(errors.responseJSON))
+  ).then(
+    () => dispatch(receiveDecks({}))
   )
 );
 
