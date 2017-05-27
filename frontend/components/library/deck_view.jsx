@@ -205,7 +205,7 @@ class DeckView extends React.Component {
               </div>
             </section>
             <section className="library-stats">
-              <h3>{ `${this.props.blocks.length} Total Cards` }</h3>
+              <h3>{ `${this.props.blocks.length} Total Blocks` }</h3>
             </section>
           </article>
           <article className="deck-card-preview">

@@ -193,7 +193,7 @@ class DeckForm extends React.Component {
               onChange={this.handleUpdateDeckName}></input>
           </h2>
           <div className="row">
-            <p className="switch-label">Personal Cards Only</p>
+            <p className="switch-label">Personal Blocks Only</p>
               <label className="switch">
                 <input
                   type="checkbox"
@@ -202,7 +202,7 @@ class DeckForm extends React.Component {
                 ></input>
                 <div className="slider round"></div>
               </label>
-            <p className="switch-label">Include Public Cards</p>
+            <p className="switch-label">Include Public Blocks</p>
           </div>
         </header>
         <p className="deck-text">
