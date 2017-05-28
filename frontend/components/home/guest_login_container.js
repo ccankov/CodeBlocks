@@ -6,7 +6,7 @@ import GuestLogin from './guest_login';
 const mapDispatchToProps = dispatch => ({
   login: () => dispatch(login({
     id: null,
-    email: 'guest@codeblocks.us',
+    email: 'guest@codeblocks.site',
     password: 'password'
   }))
 });
