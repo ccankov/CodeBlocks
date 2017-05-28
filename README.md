@@ -1,7 +1,7 @@
 # CodeBlocks
 [Live](https://code-blocks.herokuapp.com/)
 
-CodeBlocks is a web application that enables users to transcribe code blocks from literature into interactive flash cards. It was built using Ruby on Rails, React/Redux, and PostgreSQL.
+CodeBlocks is a web application that enables users to transcribe educational code samples into interactive flash cards. It was built using Ruby on Rails, React/Redux, and PostgreSQL.
 
 The entire project was conceived, designed, and completed in a strict two-week timeframe, with the potential for future enhancement.
 

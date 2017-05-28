@@ -264,7 +264,7 @@ class DeckForm extends React.Component {
               </div>
             </section>
             <section className="library-stats">
-              <h3>{ `${this.state.blocks.length} Total Cards` }</h3>
+              <h3>{ `${this.state.blocks.length} Total Blocks` }</h3>
             </section>
           </article>
           <article className="deck-card-preview">

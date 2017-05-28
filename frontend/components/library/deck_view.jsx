@@ -140,6 +140,8 @@ class DeckView extends React.Component {
         showProblem={false} />
     );
     let deckName = this.props.deck ? this.props.deck.name : 'My Library';
+    let deckText = this.props.deck
+      ? "Explore this deck's" : 'Explore your entire';
     return (
       <section className="col deck-view-main">
         <header className="row deck-header">
@@ -150,8 +152,8 @@ class DeckView extends React.Component {
           </button>
         </header>
         <p className="deck-text">
-          Explore your entire collection of blocks, including their programming
-          languages and concepts.
+          { deckText } collection of blocks, including their programming
+            languages and concepts.
         </p>
         <section className="row deck-info">
           <article className="info-panel">
