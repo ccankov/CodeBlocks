@@ -1,5 +1,5 @@
 User.create!([
-  {email: "guest@codeblocks.us", session_token: "hVjJwe42mp-5NmuGKz6iBw", password_digest: "$2a$10$335BSl36KgUzfaY/9Iwj/uTG8YOu3e0pXVDU1CYJipDS6E64/u02e"}
+  {email: "guest@codeblocks.site", session_token: "hVjJwe42mp-5NmuGKz6iBw", password_digest: "$2a$10$335BSl36KgUzfaY/9Iwj/uTG8YOu3e0pXVDU1CYJipDS6E64/u02e"}
 ])
 Concept.create!([
   {name: "syntax"},

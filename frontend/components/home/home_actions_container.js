@@ -8,7 +8,7 @@ const mapDispatchToProps = (dispatch) => ({
   receiveModal: (modalType) => dispatch(receiveModal(modalType)),
   login: () => dispatch(login({
     id: null,
-    email: 'guest@codeblocks.us',
+    email: 'guest@codeblocks.site',
     password: 'password'
   }))
 });

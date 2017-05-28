@@ -8,7 +8,7 @@ const _nullUser = {
 
 const _guestUser = {
   id: null,
-  email: 'guest@codeblocks.us',
+  email: 'guest@codeblocks.site',
   password: 'password'
 };
 
